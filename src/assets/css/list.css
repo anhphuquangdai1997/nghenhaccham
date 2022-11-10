@@ -1,0 +1,83 @@
+.list{
+    width: 100%;
+    position: absolute;
+    bottom: -60%;
+    left: 0;
+    background:#fff;
+    color:#080710;
+    box-shadow: 0 -5px 10pxrgba(e, 0, 0, 0.1);
+    transition: all 0.2s ease-out;
+    border-radius: 10px;
+    z-index:10;
+}
+.list.show{
+    bottom:0;
+}
+.list .header{
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: maroon;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+}
+.list .header i{
+    font-size: 1.7rem;
+  }
+.list .header > div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.list .header >div span{
+    font-size:1.25rem;
+    text-transform:capitalize;
+    color:#f8f8f8;
+}
+.list ul{
+    height: 250px;
+    overflow-y: scroll;
+    width: 100%;
+    background: #2b2f32;
+    color: #fff;
+}
+.List ul::-webkit-scrollbar{
+    width:0px;
+}
+.list ul li {
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    width: 100%;
+}
+.list ul li:hover{
+    background:black;
+}
+.row{
+    display:flex;
+    gap:7px;
+}
+.list ul li .row p{
+    color:#999;
+    font-size:0.85rem;
+}
+.list .duration{
+font-size: 0.9rem;
+
+}
+
+.List ul li .playing{
+    background:papayawhip
+}
+.image{
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+}
+
+  
+   
