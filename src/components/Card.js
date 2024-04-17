@@ -3,7 +3,7 @@ import '../assets/css/card.css';
 import musics from '../assets/data'
 import { timer } from '../utils/timer';
 
-const Card = ({ props: { musicNumber, setMusicNumber, setOpen,setOpen1 } }) => {
+const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2 } }) => {
     const [duration, setDuration] = useState(1);
     const [currentTime, setCurrentTime] = useState(0);
     const [play, setPlay] = useState(false);
@@ -80,6 +80,10 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen,setOpen1 } }) => {
                 <i className="material-icons" onClick={() => setOpen(prev => !prev)}>
                     queue_music
                 </i>
+                <i className="material-icons" onClick={() => setOpen2(prev => !prev)}>
+                visibility
+                </i>
+                
             </div>
             <div className='img' >
                 <img src={musics[musicNumber].thumbnail} alt="" className={`${play ? 'playing' : ''}`} />

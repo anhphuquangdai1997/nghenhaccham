@@ -24,8 +24,12 @@ const List = ({ props: { open, setOpen, musicNumber, setMusicNumber } }) => {
                                     <span>{music.title}</span>
                                     <p>{music.artist}</p>
                                 </div>
+                               
                             </div>
                             <Duration music={music} />
+                            <div>
+                                <i className="material-icons">file_download</i>
+                            </div>
                         </li>
                     ))
                 }
