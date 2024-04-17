@@ -2,6 +2,7 @@
     width:100%;
     overflow:hidden;
     padding:25px;
+    min-height:629px
 }
 .card .nav{
     width:100%;
@@ -35,6 +36,7 @@
 .card .details{
     width:100%;
     text-align:center;
+    padding:30px 10px;
 }
 .card .details .title{
     font-size:1.2rem;

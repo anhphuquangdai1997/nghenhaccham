@@ -3,7 +3,7 @@ import '../assets/css/card.css';
 import musics from '../assets/data'
 import { timer } from '../utils/timer';
 
-const Card = ({ props: { musicNumber, setMusicNumber, setOpen } }) => {
+const Card = ({ props: { musicNumber, setMusicNumber, setOpen,setOpen1 } }) => {
     const [duration, setDuration] = useState(1);
     const [currentTime, setCurrentTime] = useState(0);
     const [play, setPlay] = useState(false);
@@ -71,7 +71,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen } }) => {
     return (
         <div className='card'>
             <div className='nav'>
-                <i className="material-icons">
+                <i className="material-icons" onClick={() => setOpen1(prev => !prev)}>
                     expand_more
                 </i>
                 <span>
