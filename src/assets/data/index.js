@@ -24,7 +24,7 @@ const Data = [
     id: 3,
     title: 'Nhạc Chăm - Lời Hẹn Đêm Trăng',
     artist: 'Vương Rock Ft. Hán Văn Trà',
-    thumbnail: 'https://www.facebook.com/na.chi.77715869',
+    thumbnail: '../musics/9a26ed55-b4a7-4747-9389-d6b4e4c054c6.jpg',
     src: require('../musics/Nhạc Chăm - Lời Hẹn Đêm Trăng - Vương Rock Ft. Hán Văn Trà - MV Official 2022.mp3')
   },
 ]
