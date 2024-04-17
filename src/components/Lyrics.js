@@ -3,7 +3,7 @@ export default function Lyrics({ props: { open2, setOpen2 } }) {
     return (
         <div className={`listt ${open2 ? 'show' : ''}`}>
             <div className="header">
-                Lời Bài Hát
+                Lời Bài Hát:Đang phát triển
                 <i className="material-icons" onClick={() => setOpen2(false)}>close</i>
             </div >
             <div className="noidung">
