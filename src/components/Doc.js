@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import '../assets/css/doc.css';
 import { TiMicrophone } from "react-icons/ti";
 import axios from 'axios';
 import { GrPrevious } from "react-icons/gr";
+import { IoSearch } from "react-icons/io5";
 
 const Doc = ({ props: { open1, setOpen1 } }) => {  
     const [searchTerm, setSearchTerm] = useState('');  
@@ -13,6 +14,7 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
       
 
     const handleSearch = async () => {  
+        if (searchTerm.trim() === '') return ;
         setIsLoading(true); // Bắt đầu trạng thái tải  
         const apiKey = 'AIzaSyA8T3vCUFBbE3a4xuP_HbM_fkMpABSZUGE'; // Thay thế với khóa API của bạn  
         const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${apiKey}&type=video`;  
@@ -27,17 +29,18 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
             setIsLoading(false); // Kết thúc trạng thái tải  
         }  
     };
-    useEffect(() => {  
-        const timer = setTimeout(() => {  
-            if (searchTerm.trim() === '') {  
-                setSearchResults([]); // Nếu không có từ khoá, xóa kết quả
-                return;  
-            }  
-            handleSearch();  
-        }, 500); // Thay đổi delay theo ý muốn (500ms)  
 
-        return () => clearTimeout(timer); // Dọn dẹp timer khi component unmount  
-    }, [searchTerm,]); // Chỉ thực hiện nếu searchTerm thay đổi
+    // useEffect(() => {  
+    //     const timer = setTimeout(() => {  
+    //         if (searchTerm.trim() === '') {  
+    //             setSearchResults([]); // Nếu không có từ khoá, xóa kết quả
+    //             return;  
+    //         }  
+    //         handleSearch();  
+    //     }, 500); // Thay đổi delay theo ý muốn (500ms)  
+
+    //     return () => clearTimeout(timer); // Dọn dẹp timer khi component unmount  
+    // }, [searchTerm,]); // Chỉ thực hiện nếu searchTerm thay đổi
 
     const handleVideoClick = (videoId) => {  
        setCurrentVideoId(videoId);
@@ -62,7 +65,10 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
                         style={styles.searchInput}  
                         value={searchTerm}  
                         onChange={(e) => setSearchTerm(e.target.value)}  
-                    />  
+                    />
+                    <button onClick={handleSearch} style={styles.iconButton}>  
+                        <IoSearch />
+                    </button>  
                 </div>  
                 <div style={styles.searchContainer}>  
                     <button style={styles.iconButton}>  
@@ -134,6 +140,8 @@ const styles = {
     searchResulttt:{
         padding:'10px',
         fontSize: '10px',
+        maxHeight: '600px',
+        overflowY: 'scroll',
         
     }
 };
