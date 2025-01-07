@@ -3,7 +3,7 @@ const Data = [
     id: 1,
     title: 'Nhạc Chăm - Bhum Adei - Quê Em',
     artist: 'Quê Em - Bonneur Trinh',
-    thumbnail: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSilcFu0teuHVIoY8Rj0nFeMwW0tUaPmwHsDg&usqp=CAU',
+    thumbnail: 'https://d3bpb7mvrje809.cloudfront.net/1692239211057.jpg',
     src: require('../musics/Nhạc Chăm - Bhum Adei - Quê Em - Bonneur Trinh.mp3')
   },
   {
