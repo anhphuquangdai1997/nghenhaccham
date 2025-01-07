@@ -3,8 +3,9 @@ import '../assets/css/card.css';
 import musics from '../assets/data'
 import { timer } from '../utils/timer';
 import { FaSearch } from "react-icons/fa";
+import { IoHomeOutline } from "react-icons/io5";
 
-const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2 } }) => {
+const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2,setOpen3 } }) => {
     const [duration, setDuration] = useState(1);
     const [currentTime, setCurrentTime] = useState(0);
     const [play, setPlay] = useState(false);
@@ -72,7 +73,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2
     return (
         <div className='card'>
             <div className='nav'>
-                <p onClick={() => setOpen1(prev => !prev)}><FaSearch /></p>
+                <span onClick={() => setOpen3(prev => !prev)}><IoHomeOutline /></span>
                 <span>
                     nghe nhạc {musicNumber + 1}/{musics.length}
                 </span>
@@ -82,6 +83,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2
                 <i className="material-icons" onClick={() => setOpen2(prev => !prev)}>
                 visibility
                 </i>
+                <p onClick={() => setOpen1(prev => !prev)}><FaSearch /></p>
                 
             </div>
             <div className='img' >
