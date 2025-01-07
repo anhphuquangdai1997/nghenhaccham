@@ -14,12 +14,13 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
 
     const handleSearch = async () => {  
         setIsLoading(true); // Bắt đầu trạng thái tải  
-        const apiKey = 'AIzaSyAiLD3VVHT7I5GBilnNX-WA1i96Nb8QKZw'; // Thay thế với khóa API của bạn  
+        const apiKey = 'AIzaSyA8T3vCUFBbE3a4xuP_HbM_fkMpABSZUGE'; // Thay thế với khóa API của bạn  
         const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${apiKey}&type=video`;  
 
         try {  
             const response = await axios.get(url);  
-            setSearchResults(response.data.items);  
+            setSearchResults(response.data.items);
+  
         } catch (error) {  
             console.error('Lỗi khi lấy dữ liệu từ API YouTube:', error);  
         } finally {  
