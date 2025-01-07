@@ -23,7 +23,7 @@
     color: #fff;
 }
 .listt .header i{
-    font-size: 1.7rem;
+    font-size: 1rem;
   }
 .listt .header > div{
     display: flex;
@@ -44,4 +44,4 @@
     padding: 10px 10px;
     text-align: justify;
 }
-   
+

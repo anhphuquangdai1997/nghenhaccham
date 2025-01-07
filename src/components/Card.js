@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../assets/css/card.css';
 import musics from '../assets/data'
 import { timer } from '../utils/timer';
+import { FaSearch } from "react-icons/fa";
 
 const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2 } }) => {
     const [duration, setDuration] = useState(1);
@@ -71,9 +72,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1,setOpen2
     return (
         <div className='card'>
             <div className='nav'>
-                <i className="material-icons" onClick={() => setOpen1(prev => !prev)}>
-                    expand_more
-                </i>
+                <p onClick={() => setOpen1(prev => !prev)}><FaSearch /></p>
                 <span>
                     nghe nhạc {musicNumber + 1}/{musics.length}
                 </span>

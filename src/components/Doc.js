@@ -1,29 +1,140 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../assets/css/doc.css';
-export default function Doc({ props: { open1, setOpen1 } }) {
+import { TiMicrophone } from "react-icons/ti";
+import axios from 'axios';
+import { GrPrevious } from "react-icons/gr";
+
+const Doc = ({ props: { open1, setOpen1 } }) => {  
+    const [searchTerm, setSearchTerm] = useState('');  
+    const [searchResults, setSearchResults] = useState([]);  
+    const [isLoading, setIsLoading] = useState(false); // Thêm trạng thái tải  
+    const [currentVideoId, setCurrentVideoId] = useState(null);
+
+      
+
+    const handleSearch = async () => {  
+        setIsLoading(true); // Bắt đầu trạng thái tải  
+        const apiKey = 'AIzaSyAiLD3VVHT7I5GBilnNX-WA1i96Nb8QKZw'; // Thay thế với khóa API của bạn  
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${apiKey}&type=video`;  
+
+        try {  
+            const response = await axios.get(url);  
+            setSearchResults(response.data.items);  
+        } catch (error) {  
+            console.error('Lỗi khi lấy dữ liệu từ API YouTube:', error);  
+        } finally {  
+            setIsLoading(false); // Kết thúc trạng thái tải  
+        }  
+    };
+    useEffect(() => {  
+        const timer = setTimeout(() => {  
+            if (searchTerm.trim() === '') {  
+                setSearchResults([]); // Nếu không có từ khoá, xóa kết quả
+                return;  
+            }  
+            handleSearch();  
+        }, 500); // Thay đổi delay theo ý muốn (500ms)  
+
+        return () => clearTimeout(timer); // Dọn dẹp timer khi component unmount  
+    }, [searchTerm,]); // Chỉ thực hiện nếu searchTerm thay đổi
+
+    const handleVideoClick = (videoId) => {  
+       setCurrentVideoId(videoId);
+    }; 
+    
+    const handleClose = () => {  
+        setOpen1(false); // Đóng modal  
+        setCurrentVideoId(null); // Đặt video hiện tại thành null  
+        setSearchResults([]); // Đặt danh sách video thành rỗng  
+        setSearchTerm(''); // Xóa ô tìm kiếm  
+    };  
+
     return (
-        <div className={`listt ${open1 ? 'show' : ''}`}>
-            <div className="header">
-                Nội Dung Tìm Hiểu Thêm
-                <i className="material-icons" onClick={() => setOpen1(false)}>close</i>
-            </div >
-            <div className="noidung">
-                <h3 className='title'>DÂN CA DÂN NHẠC VN – DÂN CA CHAMPA/CHĂM PA</h3>
-                <hr />
-                <p>Chào các bạn,<br />
-                    Dân tộc Champa vốn quần tụ tại khu vực duyên hải miền Trung Việt Nam từ rất lâu đời. Ngay từ những thế kỷ đầu công nguyên cho tới thế kỷ XVII, người Champa đã từng xây dựng nên vương quốc Champa với nền vǎn hoá Sa Huỳnh rực rỡ, ảnh hưởng của vǎn hoá Ấn Độ.
-                    <br />
-                    Dân tộc này còn có các tên gọi khác là: Chàm, Chiêm, Chiêm Thành, Hời… với các nhóm địa phương: Chăm Hroi, Chăm Poổng, Chà Và Ku, Chăm Châu Ðốc. Họ có khoảng chừng 161.729 người (theo kết quả điều tra dân số năm 2009 của Tổng cục thống kê), và tiếng nói thuộc nhóm ngôn ngữ Malayô-Polynéxia (ngữ hệ Nam Ðảo).
-                    <br />
-                    Người Champa theo đạo Hồi và đạo Bà La Môn. Trong các bản làng Chǎm lễ hội diễn ra quanh nǎm và không lúc nào thiếu vắng âm nhạc. Đối với kho tàng âm nhạc của người Champa, thậm chí âm nhạc nghi lễ tín ngưỡng chiếm một phần lớn, vượt trội hơn rất nhiều so với âm nhạc đời thường.
-                    <br />
-                    Dàn nhạc đệm cho hát gồm có: kèn Xaranai (nhạc cụ họ hơi, dǎm kép, có 7 lỗ bấm trên, 1 lỗ bấm dưới), đàn Kanhi (nhạc cụ dây chi cung kéo, bầu đàn làm bằng mu rùa, có 2 dây), trống Paranưng (trống vỗ 1 mặt), cặp trống Ghì Nằng (trống 2 mặt, mặt trên vỗ, mặt dưới đánh bằng dùi), chiêng Prông (chiêng có núm) và chiêng Sit (chiêng có núm).
 
-                    Hiện tại cư dân gồm có hai bộ phận chính: Bộ phận cư trú ở Ninh Thuận và Bình Thuận chủ yếu theo đạo Bà la môn (một bộ phận nhỏ người Champa ở đây theo đạo Islam truyền thống gọi là người Chăm Bà ni). Bộ phận cư trú ở một số địa phương thuộc các tỉnh Châu Ðốc, Tây Ninh, An Giang, Ðồng Nai và Sài Gòn theo đạo Islam (Hồi giáo) mới.
-
-                    “Nhìn vào cuộc Nam Tiến của dân tộc Việt Nam, những vương quốc bị xâm lấn không hẳn đã vì kém văn minh, mà trái lại có những thời đại huy hoàng sớm sủa hơn chúng ta nhiều. Những công trình gần đây nghiên cứu về người Chiêm Thành (Chăm) và người Chân Lạp (Khmer) đã chứng tỏ điều đó.
-                </p>
+        <div className={`listt ${open1 ? 'show' : ''}`}>  
+            <div className="header">  
+                <span onClick={handleClose}><GrPrevious /></span>
+                <div style={styles.searchContainer}>  
+                    <input  
+                        type="text"  
+                        placeholder="Tìm kiếm"  
+                        style={styles.searchInput}  
+                        value={searchTerm}  
+                        onChange={(e) => setSearchTerm(e.target.value)}  
+                    />  
+                </div>  
+                <div style={styles.searchContainer}>  
+                    <button style={styles.iconButton}>  
+                        <TiMicrophone />  
+                    </button>  
+                </div>  
+                
             </div>
-        </div >
-    )
-}
+            <div style={{ marginBottom: '20px' }}>  
+                {currentVideoId && ( // Hiển thị iframe nếu có video đang phát  
+                    <iframe  
+                        width="100%"  
+                        height="315"  
+                        src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1`} // Nhúng video với chế độ tự động phát  
+                        title="YouTube video player"  
+                        frameBorder="0"  
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  
+                        allowFullScreen  
+                    ></iframe>  
+                )}  
+            </div>    
+            <div style={styles.searchResulttt}>  
+                {isLoading ? ( // Hiển thị trạng thái tải  
+                    <p>Đang tải...</p>  
+                ) : (  
+                    searchResults.map((video) => (  
+                        <div onClick={() => handleVideoClick(video.id.videoId)} style={{ cursor: 'pointer',display:'flex',gap:'10px',padding:'10px' }} key={video.id.videoId} >  
+                            <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />  
+                            <h3>{video.snippet.title}</h3>  
+                        </div>  
+                    ))  
+                )}  
+            </div>  
+        </div>  
+
+    );
+};
+
+const styles = {
+    searchContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: '3x',
+        maxWidth: '600px',
+        margin: '0 auto',
+        borderRadius: '50px',
+        backgroundColor: '#1e1e1e',
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
+    },
+    searchInput: {
+        flex: 1,
+        padding: '10px',
+        border: 'none',
+        borderRadius: '50px 0 0 50px',
+        backgroundColor: '#1e1e1e',
+        color: '#e0e0e0',
+        outline: 'none',
+        fontSize: '16px',
+    },
+    iconButton: {
+        color: 'white',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: '10px',
+        borderRadius: '50%',
+        transition: 'background 0.3s ease',
+    },
+    searchResulttt:{
+        padding:'10px',
+        fontSize: '10px',
+        
+    }
+};
+
+export default Doc

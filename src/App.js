@@ -19,7 +19,7 @@ function App() {
         <Card props={{ musicNumber, setMusicNumber, setOpen,setOpen1,setOpen2 }} />
         <List props={{ open, setOpen, musicNumber, setMusicNumber }} />
         <Doc props={{ open1, setOpen1 }} />
-        <Lyrics props={{ open2, setOpen2 }} />
+        <Lyrics props={{ open2, setOpen2,musicNumber }} />
       </main>
     </div>
   );
