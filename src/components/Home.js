@@ -12,21 +12,16 @@ const musicData = [
 ];
 const recommendations = [
     {
-        title: 'Góc Phố Diu Dàng',
-        artist: 'Tam Ca Áo Trắng',
-        imageUrl: 'link-to-your-image-1.jpg', // Thay thế bằng link hình thực tế  
+        title: 'Những bài hát yêu thích',
+        artist: 'chế linh ...',
+        imageUrl: 'http://thinhvuongvietnam.com/Content/UploadFiles/EditorFiles/images/2024/Quy3/15-vu-dieu-ben-den-thap-co04082024105344.jpg', // Thay thế bằng link hình thực tế  
     },
     {
-        title: 'Anh Không Muốn Ra Đi',
-        artist: 'Nguyễn Phi Hùng',
-        imageUrl: 'link-to-your-image-2.jpg', // Thay thế bằng link hình thực tế  
+        title: 'Top 100 bài hát yêu thích',
+        artist: 'các nghệ sĩ được yêu thích',
+        imageUrl: 'https://i.ytimg.com/vi/aHOiq7s1Yjc/maxresdefault.jpg', // Thay thế bằng link hình thực tế  
     },
-    {
-        title: 'Miền Cát Trắng',
-        artist: 'Quang Vinh',
-        imageUrl: 'link-to-your-image-3.jpg', // Thay thế bằng link hình thực tế  
-    },
-];
+]
 
 export default function Home({ props: { open3, setOpen3 } }) {
 
@@ -40,7 +35,6 @@ export default function Home({ props: { open3, setOpen3 } }) {
                 <span onClick={handleClose}><GrPrevious /></span>
             </div >
             <div className='container home-page-content'>
-                <h3 className='zm-section-title title is-2'>các bài hát được nghe nhiều</h3>
                 <div className="music-gallery">
                     {musicData.map((track) => (
                         <div className="music-card" key={track.id}>
@@ -50,20 +44,28 @@ export default function Home({ props: { open3, setOpen3 } }) {
                     ))}
                 </div>
             </div>
-            <div className="recommendation-container">  
-      <h2>Gợi Ý Cho Bạn</h2>  
-      <div className="recommendation-list">  
-        {recommendations.map((item, index) => (  
-          <div key={index} className="recommendation-item">  
-            <img src={item.imageUrl} alt={item.title} />  
-            <div className="recommendation-info">  
-              <h3>{item.title}</h3>  
-              <p>{item.artist}</p>  
-            </div>  
-          </div>  
-        ))}  
-      </div>  
-    </div>  
+            <div className="recommendation-container">
+                <h2 className='h2'>Gợi Ý Cho Bạn</h2>
+                <div className="recommendation-list">
+                    {recommendations.map((item, index) => (
+                        <div key={index} className="recommendation-item">
+                            <img src={item.imageUrl} alt={item.title} />
+                            <div className="recommendation-info">
+                                <h3>{item.title}</h3>
+                                <p>{item.artist}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="music-gallery">
+                {musicData.map((track) => (
+                    <div className="music-card" key={track.id}>
+                        <img src={track.image} alt={track.title} className="music-image" />
+                    </div>
+                ))}
+            </div>
+            </div>
+            
         </div >
     )
 }
