@@ -67,8 +67,17 @@
     color: white; /* Màu chữ */  
     text-align: center;  
     position: relative;  
-}  
-  
+}
+.music-border{
+    flex: 0 0 auto; /* Đảm bảo các thẻ không co giãn */  
+    background-color: #5a5a5a; /* Màu nền thẻ */  
+    border-radius: 50%;  
+    overflow: hidden;  
+    width: 120px;
+    color: white; /* Màu chữ */  
+    text-align: center;  
+    position: relative;  
+}
   .music-image {  
     width: 100%; /* Full width of the card */  
     height: 120px;  
