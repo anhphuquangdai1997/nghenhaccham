@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GrPrevious } from "react-icons/gr";
 import '../assets/css/home.css';
 const musicData = [
