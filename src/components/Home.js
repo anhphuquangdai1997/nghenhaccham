@@ -14,7 +14,7 @@ const recommendations = [
     {
         title: 'Những bài hát yêu thích',
         artist: 'chế linh ...',
-        imageUrl: 'http://thinhvuongvietnam.com/Content/UploadFiles/EditorFiles/images/2024/Quy3/15-vu-dieu-ben-den-thap-co04082024105344.jpg', // Thay thế bằng link hình thực tế  
+        imageUrl: 'https://bqn.1cdn.vn/2022/11/06/images.baoquangnam.vn-storage-newsportal-2022-11-1-134192-_tnb-54780-03.jpg', // Thay thế bằng link hình thực tế  
     },
     {
         title: 'Top 100 bài hát yêu thích',
