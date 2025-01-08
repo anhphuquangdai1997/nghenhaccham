@@ -5,7 +5,9 @@ const Data = [
     artist: 'Quê Em - Bonneur Trinh',
     thumbnail: 'https://d3bpb7mvrje809.cloudfront.net/1692239211057.jpg',
     src: require('../musics/Nhạc Chăm - Bhum Adei - Quê Em - Bonneur Trinh.mp3'),
-    lyrics: `Quê Em Nơi Miền Cát Trắng
+    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,80,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
+    lyrics: `1 2 3
+              Quê Em Nơi Miền Cát Trắng
               Bao Mái Tranh Tiếng Gà Đìu Hiu 
               Gió Trăng Bốn Mùa Đợi Mong 
               Nhớ Thương Ai 
@@ -51,7 +53,7 @@ const Data = [
               Đón Anh Về 
               Giữ Vẹn Câu Thề 
               Được Mùa Dưa Khoai Trái Chín 
-          Miếng Cau Trầu Đẹp Tình Đôi Ta  `
+              Miếng Cau Trầu Đẹp Tình Đôi Ta  `
   },
   {
     id: 5,
@@ -59,6 +61,7 @@ const Data = [
     artist: 'Nao Duah Adei',
     thumbnail: 'https://media1.nguoiduatin.vn/media/dao-lan-anh/2019/08/02/anh8a.jpg',
     src: require('../musics/Đi tìm em - Nao Duah Adei - nhạc chăm Lyric Audio1080p.mp3'),
+    timerer:[30,40,44,46,51,53,56,56,60,64,67],//số giây
     lyrics: ` Mang kal nit gep
               Yay aia tuh bak
               Urak ni calah luen
@@ -69,7 +72,6 @@ const Data = [
               Aia ley deng ka
               Deng maong nâk mei
               Malam sup drut druai sa drei
-
               Ai ley tuei ai
               Adei ndih ngaok glai
               Ai nao thau bian
@@ -105,6 +107,7 @@ const Data = [
     artist: 'ca sĩ Chế Linh',
     thumbnail: 'https://avatar-ex-swe.nixcdn.com/singer/avatar/2016/01/25/4/1/1/7/1453717930700_600.jpg',
     src: require('../musics/langchamqueem.mp3'),
+    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,80,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
     lyrics: `Mai Ra ngoăn play a tày hời sa ai 
               Chùi bố ka thọt plõ vanh a tày
               Thoả ô rang pa chỉa pa chừng mai
@@ -151,6 +154,7 @@ const Data = [
     artist: 'Vương Rock Ft. Hán Văn Trà',
     thumbnail: require('../images/anh.jpg'),
     src: require('../musics/Nhạc Chăm - Lời Hẹn Đêm Trăng - Vương Rock Ft. Hán Văn Trà - MV Official 2022.mp3'),
+    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,80,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
     lyrics: `Em... người con gái Chăm 
               Đôi mắt long lanh 
               Em như ngàn tia nắng 
@@ -188,7 +192,11 @@ const Data = [
     src: require('../musics/RAMUWAN NGÀY VỀ sáng tác Inu Tuấn.mp3'),
     lyrics: `Chưa Có Lời`
   },
+
 ]
 
-
 export default Data;
+
+
+
+  

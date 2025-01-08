@@ -12,10 +12,9 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
     const [showVolume, setShowVolume] = useState(false);  
     const [volume, setVolume] = useState(50);  
     const [repeat, setRepeat] = useState('repeat');  
-    const [currentLyricLine, setCurrentLyricLine] = useState(0); // Dòng lời hiện tại  
+    const [currentLyricLine, setCurrentLyricLine] = useState(''); // Dòng lời hiện tại  
+    const [nextLyricLine, setNextLyricLine] = useState(''); // Dòng lời tiếp theo  
     const audioRed = useRef();  
-
-    const linesPerPage = 3; // Số dòng lời bài hát hiển thị mỗi lần  
 
     // Tải và thiết lập thông tin bài hát  
     function handleLoadStart(e) {  
@@ -45,13 +44,19 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
         const currentTime = audioRed.current.currentTime;  
         setCurrentTime(currentTime);  
 
-        // Cập nhật dòng lời bài hát để hiển thị  
+        // Cập nhật dòng lời bài hát để hiển thị
         const lyrics = musics[musicNumber].lyrics.split('\n');  
-        const totalLines = lyrics.length;  
+        const timerArray = musics[musicNumber].timerer;
 
-        // Cập nhật chỉ số dòng lời hiện tại dựa trên thời gian  
-        const newLineIndex = Math.floor(currentTime / (duration / (totalLines / linesPerPage)));  
-        setCurrentLyricLine(Math.min(newLineIndex, totalLines - linesPerPage));  
+        // Tìm dòng lời cần hiển thị tương ứng với thời gian bài hát hiện tại
+        for (let i = 0; i < timerArray.length; i++) {
+            if (currentTime >= timerArray[i]) {
+                setCurrentLyricLine(lyrics[i]); // Cập nhật dòng lời hiện tại
+                setNextLyricLine(lyrics[i + 1] || ''); // Cập nhật dòng lời tiếp theo
+            } else {
+                break;
+            }
+        }
     }  
 
     // Thay đổi thời gian bài hát  
@@ -69,7 +74,8 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
             }  
             return value + n < 0 ? musics.length - 1 : value + n;  
         });  
-        setCurrentLyricLine(0); // Reset dòng lời khi chuyển bài hát mới  
+        setCurrentLyricLine(''); // Reset dòng lời khi chuyển bài hát mới  
+        setNextLyricLine(''); // Reset dòng lời tiếp theo
     };  
 
     // Chuyển đổi chế độ phát lại  
@@ -112,11 +118,14 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                 <p className='text-red-500'>{musics[musicNumber].title}</p>  
                 <p className='artist'>{musics[musicNumber].artist}</p>  
                 <div className='lyrics text-[20px] py-5'>  
-                    {musics[musicNumber].lyrics.split('\n').slice(currentLyricLine, currentLyricLine + linesPerPage).map((line, index) => (  
-                        <p key={index} className={index === 0 ? 'text-[20px] text-green-500' : 'text-[15px] text-gray-500'} >  
-                            {line}  
-                        </p>  
-                    ))}  
+                    {currentLyricLine && (  // Chỉ hiển thị dòng lời nếu có
+                        <p className='text-[20px] text-green-500'>{currentLyricLine}</p>
+                    )}
+                </div>
+                <div className='lyrics text-[20px]'>
+                    {nextLyricLine && (  // Chỉ hiển thị dòng tiếp theo nếu có
+                        <p className='text-[15px] text-gray-400'>{nextLyricLine}</p>
+                    )}
                 </div>  
             </div>  
             <div className='daiphu'>  
