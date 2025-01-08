@@ -84,8 +84,8 @@ export default function Home({ props: { open3, setOpen3 } }) {
                     ))}
                 </div>
                 <div className="music-gallery">
-                    {nghesi.map((track) => (
-                        <div className="music-border" key={track.id}>
+                    {nghesi.map((track,index) => (
+                        <div className="music-border" key={index}>
                             <img src={track.img} alt={track.name} className="music-image" />
                         </div>
                     ))}

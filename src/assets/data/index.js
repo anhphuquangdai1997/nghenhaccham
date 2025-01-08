@@ -6,51 +6,51 @@ const Data = [
     thumbnail: 'https://d3bpb7mvrje809.cloudfront.net/1692239211057.jpg',
     src: require('../musics/Nhạc Chăm - Bhum Adei - Quê Em - Bonneur Trinh.mp3'),
     lyrics: `Quê Em Nơi Miền Cát Trắng
-Bao Mái Tranh Tiếng Gà Đìu Hiu 
-Gió Trăng Bốn Mùa Đợi Mong 
-Nhớ Thương Ai 
-Khắc Khoải Trong Lòng 
-Bao Tháng Ngày Xa Vắng 
-Anh Nhớ Về Quê Em 
-Khắc Ghi Sâu Bóng Hình Anh Yêu 
-Đến Bên Em Tâm Tình Hàn Huyên 
-Mối Tơ Duyên Xin Đừng Nhạt Phai 
-Nước Cát Bồi 
-Em Luôn Cất Dành Đợi Anh 
-Trái Dưa Ngọt 
-Cho Mát Lòng Anh Yêu 
-Mái Tranh Nghèo 
-Đêm Đêm Bóng Ai Quạnh Hiu 
-Ánh Trăng Rằm 
-Nghiêng Soi Tóc Em Buông Xoã 
-Hỡi Anh Thấu Chăng 
-Duyên Tình Ngày Xưa 
-Đón Anh Về Giữ Vẹn Câu Thề 
-Được Mùa Dưa Khoai Trái Chín
-Miếng Cau Trầu Đẹp Tình Đôi Ta 
-Quên Sao Quê Mình Anh Hỡi 
-Quên Mái Tranh 
-Mối Tình Thuỷ Chung 
-Ái Ân Đâu Cần Giàu Sang 
-Chỉ Mong Sao Hai Quả Tim Vàng 
-Sao Nỡ Đành Quên Lãng 
-Anh Ngoảnh Mặt Làm Ngơ 
-Hỡi Anh Yêu Thấu Lòng Của Em 
-Chăm Bani Chớ Đừng Rời Xa 
-Đến Bên Nhau Nối Duyên Tình Ta 
-Nước Cát Bồi 
-Em Luôn Cất Dành Đợi Anh 
-Trái Dưa Ngọt 
-Cho Mát Lòng Anh Yêu 
-Mái Tranh Nghèo 
-Đêm Đêm Bóng Ai Quạnh Hiu 
-Ánh Trăng Rằm 
-Nghiêng Soi Tóc Em Buông Xoã
-Hỡi Anh Thấu Chăng 
-Duyên Tình Ngày Xưa 
-Đón Anh Về 
-Giữ Vẹn Câu Thề 
-Được Mùa Dưa Khoai Trái Chín 
+              Bao Mái Tranh Tiếng Gà Đìu Hiu 
+              Gió Trăng Bốn Mùa Đợi Mong 
+              Nhớ Thương Ai 
+              Khắc Khoải Trong Lòng 
+              Bao Tháng Ngày Xa Vắng 
+              Anh Nhớ Về Quê Em 
+              Khắc Ghi Sâu Bóng Hình Anh Yêu 
+              Đến Bên Em Tâm Tình Hàn Huyên 
+              Mối Tơ Duyên Xin Đừng Nhạt Phai 
+              Nước Cát Bồi 
+              Em Luôn Cất Dành Đợi Anh 
+              Trái Dưa Ngọt 
+              Cho Mát Lòng Anh Yêu 
+              Mái Tranh Nghèo 
+              Đêm Đêm Bóng Ai Quạnh Hiu 
+              Ánh Trăng Rằm 
+              Nghiêng Soi Tóc Em Buông Xoã 
+              Hỡi Anh Thấu Chăng 
+              Duyên Tình Ngày Xưa 
+              Đón Anh Về Giữ Vẹn Câu Thề 
+              Được Mùa Dưa Khoai Trái Chín
+              Miếng Cau Trầu Đẹp Tình Đôi Ta 
+              Quên Sao Quê Mình Anh Hỡi 
+              Quên Mái Tranh 
+              Mối Tình Thuỷ Chung 
+              Ái Ân Đâu Cần Giàu Sang 
+              Chỉ Mong Sao Hai Quả Tim Vàng 
+              Sao Nỡ Đành Quên Lãng 
+              Anh Ngoảnh Mặt Làm Ngơ 
+              Hỡi Anh Yêu Thấu Lòng Của Em 
+              Chăm Bani Chớ Đừng Rời Xa 
+              Đến Bên Nhau Nối Duyên Tình Ta 
+              Nước Cát Bồi 
+              Em Luôn Cất Dành Đợi Anh 
+              Trái Dưa Ngọt 
+              Cho Mát Lòng Anh Yêu 
+              Mái Tranh Nghèo 
+              Đêm Đêm Bóng Ai Quạnh Hiu 
+              Ánh Trăng Rằm 
+              Nghiêng Soi Tóc Em Buông Xoã
+              Hỡi Anh Thấu Chăng 
+              Duyên Tình Ngày Xưa 
+              Đón Anh Về 
+              Giữ Vẹn Câu Thề 
+              Được Mùa Dưa Khoai Trái Chín 
           Miếng Cau Trầu Đẹp Tình Đôi Ta  `
   },
   {
@@ -59,7 +59,7 @@ Giữ Vẹn Câu Thề
     artist: 'Nao Duah Adei',
     thumbnail: 'https://media1.nguoiduatin.vn/media/dao-lan-anh/2019/08/02/anh8a.jpg',
     src: require('../musics/Đi tìm em - Nao Duah Adei - nhạc chăm Lyric Audio1080p.mp3'),
-    lyrics: `Mang kal nit gep
+    lyrics: ` Mang kal nit gep
               Yay aia tuh bak
               Urak ni calah luen
               Tung tai mblung takal
@@ -79,7 +79,25 @@ Giữ Vẹn Câu Thề
               Sang tuei mei sit
               Klak bhum plei
               Klak nâk saong adei
-              Wang aek wang drei`
+              Wang aek wang drei
+              Mang kal nit gep
+              Yay aia tuh bak
+              Urak ni calah luen
+              Tung tai mblung takal
+              Ciim par mai gan
+              Kak adei dok jua
+              Aia nduec mai gan
+              Aia ley deng ka
+              Deng maong nâk mei
+              Malam sup drut druai sa drei
+
+              Ai ley tuei ai
+              Adei ndih ngaok glai
+              Ai nao thau bian
+              Ai lac mai wek
+              Maong cang sang mai
+              Harei yap harei
+              Sang tuei mei sit`
   },
   {
     id: 2,
