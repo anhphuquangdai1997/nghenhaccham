@@ -3,7 +3,7 @@
     position: absolute;
     bottom: -160%;
     left: 0;
-    background:#fff;
+    background-color: #170f23;
     color:#080710;
     box-shadow: 0 -5px 10pxrgba(e, 0, 0, 0.1);
     transition: all 0.2s ease-out;
@@ -19,7 +19,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
     color: #fff;
 }
 .listt .header i{
@@ -37,9 +36,6 @@
 }
 .title {
     text-align: center;
-}
-.home-page-content{
-    background-color:#170f23;
 }
 .music-gallery {  
     display: flex;  
@@ -105,21 +101,7 @@
     text-align:center;
     padding:5px 5px;
 
-  }  
-  
-  .recommendation-list {  
-    display: flex;  
-    flex-direction: column;  
-    gap: 15px; /* Khoảng cách giữa các item */  
-  }  
-  
-  .recommendation-item {  
-    display: flex;  
-    align-items: center;  
-    background-color: #3a3a3a;  
-    padding: 10px;  
-    border-radius: 8px;  
-  }
+  }   
   .h2{font-size: 1.1em;
 }  
   

@@ -47,6 +47,11 @@ const recommendations = [
         artist: 'các nghệ sĩ được yêu thích',
         imageUrl: 'https://i.ytimg.com/vi/aHOiq7s1Yjc/maxresdefault.jpg', // Thay thế bằng link hình thực tế  
     },
+    {
+        title: 'Top 100 bài hát yêu thích',
+        artist: 'các nghệ sĩ được yêu thích',
+        imageUrl: 'https://i.ytimg.com/vi/aHOiq7s1Yjc/maxresdefault.jpg', // Thay thế bằng link hình thực tế  
+    },
 ]
 
 export default function Home({ props: { open3, setOpen3 } }) {
@@ -56,7 +61,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
     }
 
     return (
-        <div className={`listt ${open3 ? 'show' : ''}`}>
+        <div className={`listt  ${open3 ? 'show' : ''}`}>
             <div className='header' >
                 <span onClick={handleClose}><GrPrevious /></span>
             </div >
@@ -72,19 +77,55 @@ export default function Home({ props: { open3, setOpen3 } }) {
             </div>
             <div className="recommendation-container">
                 <h2 className='h2'>Gợi Ý Cho Bạn</h2>
-                <div className="recommendation-list">
-                    {recommendations.map((item, index) => (
-                        <div key={index} className="recommendation-item">
-                            <img src={item.imageUrl} alt={item.title} />
-                            <div className="recommendation-info">
-                                <h3>{item.title}</h3>
-                                <p>{item.artist}</p>
+                <div className="recommendation-container overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 ">
+                    <div className="flex gap-4 w-max py-2">
+                        {recommendations.map((item, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center p-2.5 rounded-lg gap-2 w-[330px] h-[85px] sm:w-[250px] md:w-[300px]"
+                            >
+                                <img className='rounded-[15px]' width={100} src={item.imageUrl} alt={item.title} />
+                                <div className="recommendation-info">
+                                    <h3 className="text-white">{item.title}</h3>
+                                    <p className="text-gray-400">{item.artist}</p>
+                                </div>
                             </div>
+                        ))}
+                    </div>
+                    <div className="flex gap-4 w-max">
+                        {recommendations.map((item, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center p-2.5 rounded-lg gap-2 w-[330px] h-[85px] sm:w-[250px] md:w-[300px]"
+                            >
+                                <img className='rounded-[15px]' width={100} src={item.imageUrl} alt={item.title} />
+                                <div className="recommendation-info">
+                                    <h3 className="text-white">{item.title}</h3>
+                                    <p className="text-gray-400">{item.artist}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <h2 className='h2'>Chủ đề & Thể Loại</h2>
+                <div className='overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 py-2'>
+                    <div className='flex w-max gap-3'>
+                        <div className='w-[180px] h-[120px] bg-red-500 rounded-xl flex items-center justify-center'>
+                            <h2 className='text-2xl'>Top 100</h2>
                         </div>
-                    ))}
+                        <div className='w-[180px] h-[120px] bg-blue-500 rounded-xl flex items-center justify-center'>
+                            <h2 className='text-2xl'>Top 50</h2>
+                        </div>
+                        <div className='w-[180px] h-[120px] bg-orange-500 rounded-xl flex items-center justify-center'>
+                            <h2 className='text-2xl'>Top 20</h2>
+                        </div>
+                        <div className='w-[180px] h-[120px] bg-green-500 rounded-xl flex items-center justify-center'>
+                            <h2 className='text-2xl'>Top 10</h2>
+                        </div>
+                    </div>
                 </div>
                 <div className="music-gallery">
-                    {nghesi.map((track,index) => (
+                    {nghesi.map((track, index) => (
                         <div className="music-border" key={index}>
                             <img src={track.img} alt={track.name} className="music-image" />
                         </div>
