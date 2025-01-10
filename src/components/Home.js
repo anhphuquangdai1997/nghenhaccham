@@ -107,6 +107,14 @@ export default function Home({ props: { open3, setOpen3 } }) {
                         ))}
                     </div>
                 </div>
+                
+                <div className="music-gallery">
+                    {nghesi.map((track, index) => (
+                        <div className="music-border" key={index}>
+                            <img src={track.img} alt={track.name} className="music-image" />
+                        </div>
+                    ))}
+                </div>
                 <h2 className='h2'>Chủ đề & Thể Loại</h2>
                 <div className='overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 py-2'>
                     <div className='flex w-max gap-3'>
@@ -123,13 +131,6 @@ export default function Home({ props: { open3, setOpen3 } }) {
                             <h2 className='text-2xl'>Top 10</h2>
                         </div>
                     </div>
-                </div>
-                <div className="music-gallery">
-                    {nghesi.map((track, index) => (
-                        <div className="music-border" key={index}>
-                            <img src={track.img} alt={track.name} className="music-image" />
-                        </div>
-                    ))}
                 </div>
             </div>
 

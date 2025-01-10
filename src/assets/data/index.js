@@ -5,7 +5,7 @@ const Data = [
     artist: 'Quê Em - Bonneur Trinh',
     thumbnail: 'https://d3bpb7mvrje809.cloudfront.net/1692239211057.jpg',
     src: require('../musics/Nhạc Chăm - Bhum Adei - Quê Em - Bonneur Trinh.mp3'),
-    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,80,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
+    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,82,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
     lyrics: `1 2 3
               Quê Em Nơi Miền Cát Trắng
               Bao Mái Tranh Tiếng Gà Đìu Hiu 
@@ -107,7 +107,7 @@ const Data = [
     artist: 'ca sĩ Chế Linh',
     thumbnail: 'https://avatar-ex-swe.nixcdn.com/singer/avatar/2016/01/25/4/1/1/7/1453717930700_600.jpg',
     src: require('../musics/langchamqueem.mp3'),
-    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,80,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
+    timerer:[18,57,60,64,67,72,81,92,96,105,120,126,141,144,150,152,157,163,166,170,215,218,222,225,230,237,243,254,258,262,269,276,283,293,303,307,311,319,329],//số giây
     lyrics: `Mai Ra ngoăn play a tày hời sa ai 
               Chùi bố ka thọt plõ vanh a tày
               Thoả ô rang pa chỉa pa chừng mai
@@ -154,18 +154,15 @@ const Data = [
     artist: 'Vương Rock Ft. Hán Văn Trà',
     thumbnail: require('../images/anh.jpg'),
     src: require('../musics/Nhạc Chăm - Lời Hẹn Đêm Trăng - Vương Rock Ft. Hán Văn Trà - MV Official 2022.mp3'),
-    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,80,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
-    lyrics: `Em... người con gái Chăm 
+    timerer:[18,41,44,50,56,60,63,67,87,89,94,97,100,104,108,112,115,119,123,126,131,134,138,141,300],//số giây
+    lyrics: ` Em... người con gái Chăm 
               Đôi mắt long lanh 
               Em như ngàn tia nắng 
-
               Em… người con gái Chăm 
               Duyên dáng yêu kiều 
               Cho lòng anh đắm say 
-
               Hơ…hơ…hơ…  
               Hơ…hơ…hơ…  
-              
               Trong về xa xăm 
               Cô gái Chăm đội nước bên dòng sông 
               Ôi đôi bàn tay 
@@ -174,7 +171,6 @@ const Data = [
               Bao khó nhọc cuộc đời gian khổ 
               Làng chăm quê hương 
               Bao yêu thương vương vấn người ơi.
-
               Trong hội Ka Tê 
               Cô gái Chăm đắm say múa theo 
               Tay cầm quạt xoay 
@@ -182,7 +178,8 @@ const Data = [
               Thướt tha yêu kiều 
               Với áo dài nụ cười trong nắng 
               Lời hẹn đêm trăng 
-              Ta cùng sánh bước bên nhau.`
+              Ta cùng sánh bước bên nhau.
+              `
   },
   {
     id: 4,
