@@ -65,7 +65,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
             <div className='header' >
                 <span onClick={handleClose}><GrPrevious /></span>
             </div >
-            <div className='container home-page-content'>
+            <div className='container home-page-content flex justify-center'>
                 <div className="music-gallery">
                     {musicData.map((track) => (
                         <div className="music-card" key={track.id}>
@@ -75,9 +75,9 @@ export default function Home({ props: { open3, setOpen3 } }) {
                     ))}
                 </div>
             </div>
-            <div className="recommendation-container">
+            <div className="recommendation-container ">
                 <h2 className='h2'>Gợi Ý Cho Bạn</h2>
-                <div className="recommendation-container overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 ">
+                <div className="recommendation-container overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600">
                     <div className="flex gap-4 w-max py-2">
                         {recommendations.map((item, index) => (
                             <div
@@ -108,7 +108,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
                     </div>
                 </div>
                 
-                <div className="music-gallery">
+                <div className="music-gallery flex justify-center">
                     {nghesi.map((track, index) => (
                         <div className="music-border" key={index}>
                             <img src={track.img} alt={track.name} className="music-image" />
@@ -116,7 +116,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
                     ))}
                 </div>
                 <h2 className='h2'>Chủ đề & Thể Loại</h2>
-                <div className='overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 py-2'>
+                <div className='overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 py-2 flex justify-center'>
                     <div className='flex w-max gap-3'>
                         <div className='w-[180px] h-[120px] bg-red-500 rounded-xl flex items-center justify-center'>
                             <h2 className='text-2xl'>Top 100</h2>
