@@ -40,6 +40,8 @@
     width:100%;
     text-align:center;
     padding:15px 10px;
+}
+.card .detailss {
     flex:1
 }
 .card .details .title{
@@ -47,6 +49,7 @@
 }
 .card .details .artist{
     color:#bbb;
+    font-family: Oswald;
 }
 .card .progress{
     margin-top:15px;

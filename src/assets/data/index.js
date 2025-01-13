@@ -187,7 +187,43 @@ const Data = [
     artist: 'Nhạchăm -  Ramuwan ngày về',
     thumbnail: 'https://scontent.fsgn16-1.fna.fbcdn.net/v/t39.30808-6/465735451_9362144683814260_2237988702186550280_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeFKfIud0EGfGDsXmZdRHC3CLCjFCEs1vSgsKMUISzW9KML0HbkpVSzkFgzHa1HszVjwXWjeAfi3DLRDmmyDWOSF&_nc_ohc=okiSWJTPmmIQ7kNvgEsk3o3&_nc_zt=23&_nc_ht=scontent.fsgn16-1.fna&_nc_gid=AYKnh2ZQ7WpGxOsosXHzIxE&oh=00_AYAyKyhDB_G9kc299BtXP4U_Cvmi-fkckQn3BkdfzzQgUA&oe=67831FE6',
     src: require('../musics/RAMUWAN NGÀY VỀ sáng tác Inu Tuấn.mp3'),
+    timerer:[2],
     lyrics: `Chưa Có Lời`
+  },
+  {
+    id: 7,
+    title: 'Hận Đồ Bàn',
+    artist: 'Nhạchăm -  Hận Đồ Bàn',
+    thumbnail: 'https://static.wixstatic.com/media/41a9b2_b543a36e14254c27b930add278ffb5ff~mv2.png/v1/fill/w_578,h_960,al_c,q_90,enc_auto/41a9b2_b543a36e14254c27b930add278ffb5ff~mv2.png',
+    src: require('../musics/PBN 75 - Thế Sơn - Hận Đồ Bàn.mp3'),
+    timerer:[2,54,56,60,65,70,74,80,84,90,95,100,104,108,112,115,119,123,126,131,134,138,141,300],
+    lyrics: `
+    Rừng hoang vu
+              Vùi lấp bao nhiêu uất căm hận thù
+              Ngàn gió ru
+              Muôn tiếng vang trong tối tăm mịt mù
+              Vạc kêu sương
+              Buồn nhắc đây bao lúc xưa quật cường
+              Đàn đóm vương
+              Như bóng ai trong lúc đêm trường về
+              Rừng trầm cô tịch, đèo cao thác sâu
+              Đồi hoang suối reo, hoang vắng cheo leo
+              Ngàn muôn tiếng âm, tháng năm buồn ngân
+              Âm thầm hòa bài hận vong quốc ca
+              Người xưa đâu
+              Mà tháp thiêng cao đứng như buồn rầu
+              Lầu các đâu
+              Nay thấy chăng rừng xanh xanh một màu
+              Đồ Bàn miền Trung đường về đây
+              Máu như loang thắm chưa phai dấu
+              Xương trắng sao nguôi khí hờn căm khó tan
+              Kìa ngoài trùng dương đoàn thuyền ai
+              Nhấp nhô trên sóng xa xa tắp
+              Mơ bóng Chiêm thuyền Chế Bồng Nga vượt khơi
+              Nay thấy chăng rừng xanh xanh một màu
+              Người xưa đâu?
+              Người xưa đâu?
+              Người xưa đâu?`
   },
 
 ]

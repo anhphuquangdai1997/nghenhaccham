@@ -77,7 +77,7 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
         <div className={`listt ${open1 ? 'show' : ''}`}>  
             <div className="header">  
                 <span onClick={handleClose}><GrPrevious /></span>
-                <div style={styles.searchContainer}>  
+                <div style={styles.searchContainer} className='w-[70%]'>  
                     <input  
                         type="text"  
                         placeholder="Tìm kiếm"  
@@ -124,8 +124,13 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
                             style={{ cursor: 'pointer', display: 'flex', gap: '10px', padding: '10px' }} 
                             key={video.id.videoId}
                         >  
-                            <img src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />  
-                            <h3>{video.snippet.title}</h3>  
+                            <img className='w-[30%]' src={video.snippet.thumbnails.default.url} alt={video.snippet.title} />  
+                            <div className=''>
+                                <h3 className='text-white text-lg p-2'>{video.snippet.title}</h3>
+                                <p className='text-gray-400 p-2'>{video.snippet.channelTitle}</p>
+                                <p className='text-gray-400 p-2'>{video.snippet.publishedAt}</p>
+                            </div>
+                             
                         </div>  
                     ))  
                 )}  
@@ -139,14 +144,13 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         padding: '3x',
-        maxWidth: '600px',
-        margin: '0 auto',
         borderRadius: '50px',
         backgroundColor: '#1e1e1e',
         boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
     },
     searchInput: {
         flex: 1,
+        width:'50%',
         padding: '10px',
         border: 'none',
         borderRadius: '50px 0 0 50px',
@@ -167,8 +171,6 @@ const styles = {
     searchResulttt: {
         padding: '10px',
         fontSize: '10px',
-        maxHeight: '600px',
-        overflowY: 'scroll',
     },
 };
 
