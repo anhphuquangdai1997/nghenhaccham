@@ -4,6 +4,8 @@ import musics from '../assets/data';
 import { timer } from '../utils/timer';
 import { FaSearch } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
+import { CiPlay1 } from "react-icons/ci";
+import { CiPause1 } from "react-icons/ci";
 
 const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen2, setOpen3 } }) => {
     const [duration, setDuration] = useState(1);
@@ -55,7 +57,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
             if (currentTime >= timerArray[i]) {
                 setCurrentLyricLine(lyrics[i]); // Cập nhật dòng lời hiện tại
                 setNextLyricLine(lyrics[i + 1] || ''); // Cập nhật dòng lời tiếp theo
-                const nextLyrics = lyrics.slice(i + 1, i + 5).join('\n');
+                const nextLyrics = lyrics.slice(i + 1, i + 5);
                 setNextLyric(nextLyrics)
             } else {
                 break;
@@ -97,9 +99,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
         });
     };
 
-    const handleDetailClick = () => {
 
-    }
 
     useEffect(() => {
         audioRed.current.volume = volume / 100;
@@ -136,7 +136,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                     </div>
                     {showImage ? (<div className='lyrics text-[20px]'>
                         {nextLyricLine && (  // Chỉ hiển thị dòng tiếp theo nếu có
-                            <p className='text-[15px] text-gray-400'>{nextLyricLine}</p>
+                            <p className='text-[15px] justify-center text-gray-400'>{nextLyricLine}</p>
                         )}
                     </div>) : (<div className='lyrics text-[40px]'>
                         {nextLyric && (  // Chỉ hiển thị dòng tiếp theo nếu có
@@ -147,8 +147,18 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
             </div>
             {showImage ? (
                 <div className='daiphu'>
-                    <div className='progress'>
-                        <input type='range' min={0} max={duration} value={currentTime} onChange={handleChangeTime} />
+                    <div>
+                        <input
+                            className="w-full h-2 bg-white rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            type="range"
+                            min={0}
+                            max={duration}
+                            value={currentTime}
+                            onChange={handleChangeTime}
+                            style={{
+                                accentColor: 'gray',
+                            }}
+                        />
                     </div>
                     <div className='timer'>
                         <span>{timer(currentTime)}</span>
@@ -157,23 +167,17 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                     <div className='controls'>
                         <i className="material-icons" onClick={handleRepeat}>{repeat}</i>
                         <i className="material-icons" id='prev' onClick={() => handleNextPrev(-1)}>skip_previous</i>
-                        <div className='play' onClick={handlePlayingAudio}>
-                            <i className="material-icons">{play ? 'pause' : 'play_arrow'}</i>
-                        </div>
+                        <div className='text-md cursor-pointer p-3 rounded-full border-2 border-gray-400 hover:border-green-400' onClick={handlePlayingAudio}>{play ? (<CiPause1 />) : (<CiPlay1 />)}</div>
                         <i className="material-icons" id='next' onClick={() => handleNextPrev(1)}>skip_next</i>
                         <i className="material-icons" onClick={() => setShowVolume(prev => !prev)}>
                             {volume === 0 ? 'volume_off' : 'volume_up'}
                         </i>
                         <div className={`volume ${showVolume ? 'show' : ''}`}>
-                            <i className="material-icons" onClick={() => setVolume(v => (v > 0 ? 0 : 100))}>
-                                {volume === 0 ? 'volume_off' : 'volume_up'}
-                            </i>
                             <input type='range' min={0} max={100} onChange={(e) => setVolume(Number(e.target.value))} value={volume} />
-                            <span>{volume}</span>
                         </div>
                     </div>
-                </div>) : (<><div className='progress'>
-                    <input type='range' min={0} max={duration} value={currentTime} onChange={handleChangeTime} />
+                </div>) : (<><div>
+                    <input className='w-full h-1' type='range' min={0} max={duration} value={currentTime} onChange={handleChangeTime} />
                 </div>
                     <div className='timer'>
                         <span>{timer(currentTime)}</span>

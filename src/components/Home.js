@@ -65,6 +65,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
             <div className='header' >
                 <span onClick={handleClose}><GrPrevious /></span>
             </div >
+            <div className='noidung'>
             <div className='container home-page-content flex justify-center'>
                 <div className="music-gallery">
                     {musicData.map((track) => (
@@ -132,6 +133,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
         </div >
