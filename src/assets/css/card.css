@@ -4,7 +4,7 @@
     height:100%;
     display:flex;
     flex-direction:column;
-
+    perspective: 1000px;
 }
 .card .nav{
     width:100%;
@@ -19,22 +19,128 @@
     justify-content:center;
     align-items:center;
     position:relative;
+    transform-style: preserve-3d;
 }
+
+/* Thêm hiệu ứng sóng âm */
+.card .img::before {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: transparent;
+    border: 2px solid rgba(54, 207, 168, 0.5);
+    border-radius: 50%;
+    animation: wave 2s linear infinite;
+    z-index: -1;
+}
+
+.card .img.playing::before {
+    animation-play-state: running;
+}
+
+.card .img::after {
+    content: '';
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    background: transparent;
+    border: 2px solid rgba(54, 207, 168, 0.3);
+    border-radius: 50%;
+    animation: wave 3s linear infinite;
+    z-index: -1;
+}
+
+.card .img.playing::after {
+    animation-play-state: running;
+}
+
+@keyframes wave {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Thêm hiệu ứng equalizer */
+.card .img .equalizer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    height: 40px;
+    align-items: flex-end;
+    padding: 0 10px;
+}
+
+.card .img .equalizer span {
+    width: 4px;
+    background: linear-gradient(to top, #36cfa8, #6e72a3);
+    animation: equalize 1s ease infinite;
+    opacity: 0;
+    border-radius: 2px;
+}
+
+.card .img.playing .equalizer span {
+    opacity: 1;
+}
+
+.card .img .equalizer span:nth-child(1) { height: 100%; animation-delay: 0.1s; }
+.card .img .equalizer span:nth-child(2) { height: 85%; animation-delay: 0.2s; }
+.card .img .equalizer span:nth-child(3) { height: 95%; animation-delay: 0.3s; }
+.card .img .equalizer span:nth-child(4) { height: 65%; animation-delay: 0.4s; }
+.card .img .equalizer span:nth-child(5) { height: 75%; animation-delay: 0.5s; }
+.card .img .equalizer span:nth-child(6) { height: 90%; animation-delay: 0.6s; }
+.card .img .equalizer span:nth-child(7) { height: 80%; animation-delay: 0.7s; }
+.card .img .equalizer span:nth-child(8) { height: 70%; animation-delay: 0.8s; }
+.card .img .equalizer span:nth-child(9) { height: 95%; animation-delay: 0.9s; }
+.card .img .equalizer span:nth-child(10) { height: 60%; animation-delay: 1s; }
+
+@keyframes equalize {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(0.5); }
+    100% { transform: scaleY(1); }
+}
+
 .card .img img{
     width:200px;
     height:200px;
     object-fit:cover;
     border-radius:50%;
-    animation: rotate 20s linear;
-    animation-iteration-count: infinite;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    transform-style: preserve-3d;
+    animation: rotate3D 20s linear infinite;
     animation-play-state: paused;
+    transition: transform 0.5s ease;
 }
 .card .img img.playing{
-    animation-play-state:running
+    animation-play-state: running;
+    box-shadow: 0 0 30px rgba(54, 207, 168, 0.5);
 }
-@keyframes rotate{
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg);}
+@keyframes rotate3D {
+    0% {
+        transform: rotateY(0deg) rotateX(10deg);
+    }
+    50% {
+        transform: rotateY(180deg) rotateX(-10deg);
+    }
+    100% {
+        transform: rotateY(360deg) rotateX(10deg);
+    }
+}
+.card .img:hover img {
+    transform: rotateY(45deg) scale(1.1);
+    box-shadow: 20px 20px 30px rgba(0,0,0,0.4);
 }
 .card .details{
     width:100%;

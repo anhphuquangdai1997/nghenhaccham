@@ -1,5 +1,7 @@
 import React from 'react';
 import { GrPrevious } from "react-icons/gr";
+import { BsPlayFill, BsThreeDotsVertical } from "react-icons/bs";
+import { FaHeadphones } from "react-icons/fa";
 import '../assets/css/home.css';
 const musicData = [
     { id: 1, title: 'Nhạc Chill Tâm Trạng Buồn', image: 'https://file1.dangcongsan.vn/DATA/0/2017/08/2_b_thoi_trang_dan_toc_cham-15_13_54_418.jpg' },
@@ -55,87 +57,136 @@ const recommendations = [
 ]
 
 export default function Home({ props: { open3, setOpen3 } }) {
-
     const handleClose = () => {
         setOpen3(false);
     }
 
     return (
-        <div className={`listt  ${open3 ? 'show' : ''}`}>
-            <div className='header' >
-                <span onClick={handleClose}><GrPrevious /></span>
-            </div >
-            <div className='noidung'>
-            <div className='container home-page-content flex justify-center'>
-                <div className="music-gallery">
-                    {musicData.map((track) => (
-                        <div className="music-card" key={track.id}>
-                            <img src={track.image} alt={track.title} className="music-image" />
-                            <div className="music-title">{track.title}</div>
-                        </div>
-                    ))}
+        <div className={`listt ${open3 ? 'show' : ''}`}>
+            <div className='header bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 p-4 sticky top-0 z-50 backdrop-blur-lg bg-opacity-90'>
+                <div className="flex items-center justify-between">
+                    <span onClick={handleClose} className="cursor-pointer hover:opacity-70 transition-opacity flex items-center gap-2">
+                        <GrPrevious className="text-white text-2xl" />
+                        <span className="text-white text-lg font-medium">Trang chủ</span>
+                    </span>
                 </div>
             </div>
-            <div className="recommendation-container ">
-                <h2 className='h2'>Gợi Ý Cho Bạn</h2>
-                <div className="recommendation-container overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600">
-                    <div className="flex gap-4 w-max py-2">
-                        {recommendations.map((item, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center p-2.5 rounded-lg gap-2 w-[330px] h-[85px] sm:w-[250px] md:w-[300px]"
-                            >
-                                <img className='rounded-[15px]' width={100} src={item.imageUrl} alt={item.title} />
-                                <div className="recommendation-info">
-                                    <h3 className="text-white">{item.title}</h3>
-                                    <p className="text-gray-400">{item.artist}</p>
+            <div className='noidung bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 min-h-screen'>
+                <div className='container mx-auto px-4 py-6'>
+                    {/* Featured Section */}
+                    <div className="mb-12">
+                        <h2 className='text-3xl font-bold text-white mb-6 flex items-center gap-2'>
+                            <FaHeadphones className="text-blue-400" />
+                            Thịnh hành
+                        </h2>
+                        <div className="music-gallery grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {musicData.map((track) => (
+                                <div
+                                    className="music-card group relative transform hover:scale-105 transition-all duration-300 bg-gray-800/50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/20"
+                                    key={track.id}
+                                >
+                                    <div className="relative pb-[100%]">
+                                        <img
+                                            src={track.image}
+                                            alt={track.title}
+                                            className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                            <button className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                                <BsPlayFill className="text-2xl" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className="p-4">
+                                        <div className="flex items-center justify-between">
+                                            <div className="music-title text-white font-medium group-hover:text-blue-400 transition-colors truncate flex-1">
+                                                {track.title}
+                                            </div>
+                                            <button className="text-gray-400 hover:text-white transition-colors">
+                                                <BsThreeDotsVertical />
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="flex gap-4 w-max">
-                        {recommendations.map((item, index) => (
-                            <div
-                                key={index}
-                                className="flex items-center p-2.5 rounded-lg gap-2 w-[330px] h-[85px] sm:w-[250px] md:w-[300px]"
-                            >
-                                <img className='rounded-[15px]' width={100} src={item.imageUrl} alt={item.title} />
-                                <div className="recommendation-info">
-                                    <h3 className="text-white">{item.title}</h3>
-                                    <p className="text-gray-400">{item.artist}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                
-                <div className="music-gallery flex justify-center">
-                    {nghesi.map((track, index) => (
-                        <div className="music-border" key={index}>
-                            <img src={track.img} alt={track.name} className="music-image" />
-                        </div>
-                    ))}
-                </div>
-                <h2 className='h2'>Chủ đề & Thể Loại</h2>
-                <div className='overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 py-2 flex justify-center'>
-                    <div className='flex w-max gap-3'>
-                        <div className='w-[180px] h-[120px] bg-red-500 rounded-xl flex items-center justify-center'>
-                            <h2 className='text-2xl'>Top 100</h2>
-                        </div>
-                        <div className='w-[180px] h-[120px] bg-blue-500 rounded-xl flex items-center justify-center'>
-                            <h2 className='text-2xl'>Top 50</h2>
-                        </div>
-                        <div className='w-[180px] h-[120px] bg-orange-500 rounded-xl flex items-center justify-center'>
-                            <h2 className='text-2xl'>Top 20</h2>
-                        </div>
-                        <div className='w-[180px] h-[120px] bg-green-500 rounded-xl flex items-center justify-center'>
-                            <h2 className='text-2xl'>Top 10</h2>
+                            ))}
                         </div>
                     </div>
-                </div>
-            </div>
-            </div>
 
-        </div >
+                    {/* Recommendations Section */}
+                    <div className="recommendation-container mb-12">
+                        <h2 className='text-3xl font-bold text-white mb-6 border-b border-gray-700/50 pb-2'>
+                            Gợi Ý Cho Bạn
+                        </h2>
+                        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600">
+                            <div className="flex gap-4 w-max py-2">
+                                {recommendations.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center p-4 rounded-lg gap-4 w-[330px] bg-gray-800/30 hover:bg-gray-700/50 transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl hover:shadow-blue-500/10 group cursor-pointer"
+                                    >
+                                        <div className="relative">
+                                            <img
+                                                className='rounded-xl w-24 h-24 object-cover shadow-md transition-transform duration-300 group-hover:scale-105'
+                                                src={item.imageUrl}
+                                                alt={item.title}
+                                            />
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                                    <BsPlayFill className="text-xl" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className="recommendation-info flex-1">
+                                            <h3 className="text-white font-semibold mb-1 group-hover:text-blue-400 transition-colors">{item.title}</h3>
+                                            <p className="text-gray-400 text-sm">{item.artist}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Artists Section */}
+                        <h2 className='text-3xl font-bold text-white my-8 border-b border-gray-700/50 pb-2'>Nghệ Sĩ Nổi Bật</h2>
+                        <div className="music-gallery grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
+                            {nghesi.map((artist, index) => (
+                                <div
+                                    className="music-border group relative cursor-pointer"
+                                    key={index}
+                                >
+                                    <div className="aspect-square rounded-full overflow-hidden shadow-xl relative">
+                                        <img
+                                            src={artist.img}
+                                            alt={artist.name}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    </div>
+                                    <p className="text-center text-white mt-3 font-medium group-hover:text-blue-400 transition-colors">{artist.name}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Categories Section */}
+                        <h2 className='text-3xl font-bold text-white mb-6 border-b border-gray-700/50 pb-2'>Chủ đề & Thể Loại</h2>
+                        <div className='overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-600 py-4'>
+                            <div className='flex w-max gap-4'>
+                                <div className='w-[200px] h-[130px] bg-gradient-to-br from-red-600 to-pink-500 rounded-xl flex items-center justify-center transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-red-500/20 cursor-pointer group'>
+                                    <h2 className='text-2xl font-bold text-white group-hover:scale-110 transition-transform'>Top 100</h2>
+                                </div>
+                                <div className='w-[200px] h-[130px] bg-gradient-to-br from-blue-600 to-cyan-400 rounded-xl flex items-center justify-center transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/20 cursor-pointer group'>
+                                    <h2 className='text-2xl font-bold text-white group-hover:scale-110 transition-transform'>Top 50</h2>
+                                </div>
+                                <div className='w-[200px] h-[130px] bg-gradient-to-br from-orange-500 to-yellow-400 rounded-xl flex items-center justify-center transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-orange-500/20 cursor-pointer group'>
+                                    <h2 className='text-2xl font-bold text-white group-hover:scale-110 transition-transform'>Top 20</h2>
+                                </div>
+                                <div className='w-[200px] h-[130px] bg-gradient-to-br from-green-500 to-emerald-400 rounded-xl flex items-center justify-center transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-green-500/20 cursor-pointer group'>
+                                    <h2 className='text-2xl font-bold text-white group-hover:scale-110 transition-transform'>Top 10</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }

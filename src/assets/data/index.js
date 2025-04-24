@@ -1,11 +1,13 @@
-const Data = [
+import { getAllSongs } from '../../utils/songStorage';
+
+const defaultData = [
   {
     id: 1,
     title: 'Nhạc Chăm - Bhum Adei - Quê Em',
     artist: 'Quê Em - Bonneur Trinh',
     thumbnail: 'https://d3bpb7mvrje809.cloudfront.net/1692239211057.jpg',
     src: require('../musics/Nhạc Chăm - Bhum Adei - Quê Em - Bonneur Trinh.mp3'),
-    timerer:[18,22,26,30,35,37,41,45,48,53,56,63,67,69,72,76,82,84,89,92,96,100,104,107,111,116,120,125,129,135,140,145,149,150,153,157,160,165,169,172,177,182],//số giây
+    timerer: [18, 22, 26, 30, 35, 37, 41, 45, 48, 53, 56, 63, 67, 69, 72, 76, 82, 84, 89, 92, 96, 100, 104, 107, 111, 116, 120, 125, 129, 135, 140, 145, 149, 150, 153, 157, 160, 165, 169, 172, 177, 182],//số giây
     lyrics: `1 2 3
               Quê Em Nơi Miền Cát Trắng
               Bao Mái Tranh Tiếng Gà Đìu Hiu 
@@ -61,7 +63,7 @@ const Data = [
     artist: 'Nao Duah Adei',
     thumbnail: 'https://media1.nguoiduatin.vn/media/dao-lan-anh/2019/08/02/anh8a.jpg',
     src: require('../musics/Đi tìm em - Nao Duah Adei - nhạc chăm Lyric Audio1080p.mp3'),
-    timerer:[30,40,44,46,51,53,56,56,60,64,67],//số giây
+    timerer: [30, 40, 44, 46, 51, 53, 56, 56, 60, 64, 67],//số giây
     lyrics: ` Mang kal nit gep
               Yay aia tuh bak
               Urak ni calah luen
@@ -107,7 +109,7 @@ const Data = [
     artist: 'ca sĩ Chế Linh',
     thumbnail: 'https://avatar-ex-swe.nixcdn.com/singer/avatar/2016/01/25/4/1/1/7/1453717930700_600.jpg',
     src: require('../musics/langchamqueem.mp3'),
-    timerer:[18,57,60,64,67,72,81,92,96,105,120,126,141,144,150,152,157,163,166,170,215,218,222,225,230,237,243,254,258,262,269,276,283,293,303,307,311,319,329],//số giây
+    timerer: [18, 57, 60, 64, 67, 72, 81, 92, 96, 105, 120, 126, 141, 144, 150, 152, 157, 163, 166, 170, 215, 218, 222, 225, 230, 237, 243, 254, 258, 262, 269, 276, 283, 293, 303, 307, 311, 319, 329],//số giây
     lyrics: `Mai Ra ngoăn play a tày hời sa ai 
               Chùi bố ka thọt plõ vanh a tày
               Thoả ô rang pa chỉa pa chừng mai
@@ -154,7 +156,7 @@ const Data = [
     artist: 'Vương Rock Ft. Hán Văn Trà',
     thumbnail: require('../images/anh.jpg'),
     src: require('../musics/Nhạc Chăm - Lời Hẹn Đêm Trăng - Vương Rock Ft. Hán Văn Trà - MV Official 2022.mp3'),
-    timerer:[18,41,44,50,56,60,63,67,87,89,94,97,100,104,108,112,115,119,123,126,131,134,138,141,300],//số giây
+    timerer: [18, 41, 44, 50, 56, 60, 63, 67, 87, 89, 94, 97, 100, 104, 108, 112, 115, 119, 123, 126, 131, 134, 138, 141, 300],//số giây
     lyrics: ` Em... người con gái Chăm 
               Đôi mắt long lanh 
               Em như ngàn tia nắng 
@@ -187,7 +189,7 @@ const Data = [
     artist: 'Nhạchăm -  Ramuwan ngày về',
     thumbnail: 'https://scontent.fsgn16-1.fna.fbcdn.net/v/t39.30808-6/465735451_9362144683814260_2237988702186550280_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeFKfIud0EGfGDsXmZdRHC3CLCjFCEs1vSgsKMUISzW9KML0HbkpVSzkFgzHa1HszVjwXWjeAfi3DLRDmmyDWOSF&_nc_ohc=okiSWJTPmmIQ7kNvgEsk3o3&_nc_zt=23&_nc_ht=scontent.fsgn16-1.fna&_nc_gid=AYKnh2ZQ7WpGxOsosXHzIxE&oh=00_AYAyKyhDB_G9kc299BtXP4U_Cvmi-fkckQn3BkdfzzQgUA&oe=67831FE6',
     src: require('../musics/RAMUWAN NGÀY VỀ sáng tác Inu Tuấn.mp3'),
-    timerer:[2],
+    timerer: [2],
     lyrics: `Chưa Có Lời`
   },
   {
@@ -196,7 +198,7 @@ const Data = [
     artist: 'Nhạchăm -  Hận Đồ Bàn',
     thumbnail: 'https://static.wixstatic.com/media/41a9b2_b543a36e14254c27b930add278ffb5ff~mv2.png/v1/fill/w_578,h_960,al_c,q_90,enc_auto/41a9b2_b543a36e14254c27b930add278ffb5ff~mv2.png',
     src: require('../musics/PBN 75 - Thế Sơn - Hận Đồ Bàn.mp3'),
-    timerer:[2,54,56,60,65,70,74,80,84,90,95,100,104,108,112,115,119,123,126,131,134,138,141,300],
+    timerer: [2, 54, 56, 60, 65, 70, 74, 80, 84, 90, 95, 100, 104, 108, 112, 115, 119, 123, 126, 131, 134, 138, 141, 300],
     lyrics: `
     Rừng hoang vu
               Vùi lấp bao nhiêu uất căm hận thù
@@ -225,8 +227,9 @@ const Data = [
               Người xưa đâu?
               Người xưa đâu?`
   },
+];
 
-]
+// Kết hợp bài hát mặc định với bài hát người dùng đã tải lên
+const Data = getAllSongs(defaultData);
 
 export default Data;
-  
