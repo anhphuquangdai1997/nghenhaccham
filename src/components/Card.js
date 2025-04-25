@@ -7,8 +7,9 @@ import { IoHomeOutline } from "react-icons/io5";
 import { CiPlay1 } from "react-icons/ci";
 import { CiPause1 } from "react-icons/ci";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { SiYoutubeshorts } from "react-icons/si";
 
-const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen2, setOpen3, setOpenUpload } }) => {
+const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen2, setOpen3, setOpenUpload, setOpenTabs, setCurrentPage } }) => {
     const [duration, setDuration] = useState(1);
     const [currentTime, setCurrentTime] = useState(0);
     const [play, setPlay] = useState(false);
@@ -18,7 +19,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
     const [repeat, setRepeat] = useState('repeat');
     const [currentLyricLine, setCurrentLyricLine] = useState(''); // Dòng lời hiện tại  
     const [nextLyricLine, setNextLyricLine] = useState(''); // Dòng lời tiếp theo  
-    const [nextLyric, setNextLyric] = useState(10);
+    const [nextLyric, setNextLyric] = useState([]);
     const [errorLoading, setErrorLoading] = useState(false);
     const audioRed = useRef();
 
@@ -115,21 +116,18 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
         setCurrentTime(currentTime);
 
         try {
-            // Cập nhật dòng lời bài hát để hiển thị
             const currentSong = musics[musicNumber];
             if (!currentSong || !currentSong.lyrics || !currentSong.timerer) return;
 
             const lyrics = currentSong.lyrics.split('\n');
             const timerArray = currentSong.timerer;
 
-            // Tìm dòng lời cần hiển thị tương ứng với thời gian bài hát hiện tại
             for (let i = 0; i < timerArray.length; i++) {
-                if (currentTime >= timerArray[i]) {
-                    setCurrentLyricLine(lyrics[i]); // Cập nhật dòng lời hiện tại
-                    setNextLyricLine(lyrics[i + 1] || ''); // Cập nhật dòng lời tiếp theo
-                    const nextLyrics = lyrics.slice(i + 1, i + 5);
-                    setNextLyric(nextLyrics)
-                } else {
+                if (currentTime >= timerArray[i] && (i === timerArray.length - 1 || currentTime < timerArray[i + 1])) {
+                    setCurrentLyricLine(lyrics[i]?.trim() || '');
+                    setNextLyricLine(lyrics[i + 1]?.trim() || '');
+                    const nextLines = lyrics.slice(i + 1, i + 4).map(line => line.trim()).filter(Boolean);
+                    setNextLyric(nextLines);
                     break;
                 }
             }
@@ -163,7 +161,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
         });
         setCurrentLyricLine(''); // Reset dòng lời khi chuyển bài hát mới  
         setNextLyricLine(''); // Reset dòng lời tiếp theo
-        setNextLyric('');
+        setNextLyric([]);
         setPlay(false); // Đảm bảo bài hát mới không tự động phát
         setErrorLoading(false); // Reset trạng thái lỗi
     };
@@ -234,102 +232,140 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
         }
     }, [musicNumber]);
 
+    const handleHomeClick = () => {
+        setOpen3(true);
+        setCurrentPage('home');
+    };
+
     return (
-        <div className='card'>
+        <div className='card w-full sm:w-[640px] h-[340px] sm:h-[440px] rounded-xl relative overflow-hidden'>
+            <div className='top-bar flex items-center justify-between px-[2rem] py-[1rem]'>
+                <IoHomeOutline onClick={handleHomeClick} className='text-[1.2rem] cursor-pointer hover:text-blue-500' />
+                <div className='flex items-center gap-[1.7rem]'>
+                    <FaSearch className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpen1(true)} />
+                    <FaCloudUploadAlt className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpenUpload(true)} />
+                    <SiYoutubeshorts  className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpenTabs(true)} title="Open Tabs Demo" />
+                </div>
+            </div>
             <div className='nav'>
-                <span onClick={() => setOpen3(prev => !prev)}><IoHomeOutline /></span>
-                <span>
-                    nghe nhạc {musicNumber + 1}/{musics.length}
-                </span>
                 <i className="material-icons" onClick={() => setOpen(prev => !prev)}>
                     queue_music
                 </i>
                 <i className="material-icons" onClick={() => setOpen2(prev => !prev)}>
                     visibility
                 </i>
-                <p onClick={() => setOpen1(prev => !prev)}><FaSearch /></p>
-                <p onClick={() => setOpenUpload(prev => !prev)} className="text-blue-500 hover:text-blue-700">
-                    <FaCloudUploadAlt />
-                </p>
             </div>
             <div onClick={() => setShowImage(prev => !prev)} className='detailss'>
-                {showImage && ( // Chỉ hiển thị khi `showImage` là true
-                    <div className={`img ${play ? 'playing' : ''}`}>
-                        <img src={getThumbnail()} alt="" className={`${play ? 'playing' : ''}`} />
-                        <div className="equalizer">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                <div className="img-section">
+                    {showImage && (
+                        <div className={`img ${play ? 'playing' : ''}`}>
+                            <img src={getThumbnail()} alt="" className={`${play ? 'playing' : ''}`} />
+                        </div>
+                    )}
+                    {showImage && (
+                        <div className="audio-waves">
+                            {[...Array(30)].map((_, index) => (
+                                <div
+                                    key={index}
+                                    className="wave"
+                                    style={{
+                                        height: `${Math.random() * 100}%`,
+                                        animationDelay: `${index * 0.05}s`
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <div className="content-section">
+                    <div className="details">
+                        <p className="text-red-500">{musics[musicNumber]?.title || ''}</p>
+                        <p className="artist">{musics[musicNumber]?.artist || ''}</p>
+                        {errorLoading && (
+                            <p className="text-red-500 mt-2">Không thể tải bài hát này. Có thể do định dạng hoặc nguồn không hợp lệ.</p>
+                        )}
+                        <div className="lyrics-section mt-4">
+                            {currentLyricLine && (
+                                <div className={`karaoke-container ${play ? 'playing' : ''}`}>
+                                    <p className="current-line">
+                                        {currentLyricLine.split(' ').map((word, index) => (
+                                            <span
+                                                key={index}
+                                                className="highlight-word"
+                                                style={{
+                                                    '--delay': index,
+                                                    animationDelay: `${index * 0.1}s`
+                                                }}
+                                            >
+                                                {word}
+                                            </span>
+                                        ))}
+                                    </p>
+                                    {nextLyricLine && (
+                                        <p className="next-line">{nextLyricLine}</p>
+                                    )}
+                                    {nextLyric.length > 0 && (
+                                        <div className="upcoming-lyrics">
+                                            {nextLyric.map((line, index) => (
+                                                <p
+                                                    key={index}
+                                                    className="upcoming-line"
+                                                    style={{
+                                                        '--delay': index + 1
+                                                    }}
+                                                >
+                                                    {line}
+                                                </p>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
-                )}
-                <div className='details'>
-                    <p className='text-red-500'>{musics[musicNumber]?.title || ''}</p>
-                    <p className='artist'>{musics[musicNumber]?.artist || ''}</p>
-                    {errorLoading && (
-                        <p className="text-red-500 mt-2">Không thể tải bài hát này. Có thể do định dạng hoặc nguồn không hợp lệ.</p>
-                    )}
-                    <div className='lyrics text-[20px] py-5'>
-                        {currentLyricLine && (  // Chỉ hiển thị dòng lời nếu có
-                            <p className='text-[20px] text-green-500'>{currentLyricLine}</p>
-                        )}
+                    <div className='daiphu'>
+                        <div>
+                            <input
+                                className="w-full h-2 bg-white rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-gray-500"
+                                type="range"
+                                min={0}
+                                max={duration}
+                                value={currentTime}
+                                onChange={handleChangeTime}
+                                style={{
+                                    accentColor: 'gray',
+                                }}
+                            />
+                        </div>
+                        <div className='timer'>
+                            <span>{timer(currentTime)}</span>
+                            <span>{timer(duration)}</span>
+                        </div>
+                        <div className='controls'>
+                            <i className="material-icons" onClick={handleRepeat}>{repeat}</i>
+                            <i className="material-icons" id='prev' onClick={() => handleNextPrev(-1)}>skip_previous</i>
+                            <div className='text-md cursor-pointer p-3 rounded-full border-2 border-gray-400 hover:border-green-400' onClick={handlePlayingAudio}>{play ? (<CiPause1 />) : (<CiPlay1 />)}</div>
+                            <i className="material-icons" id='next' onClick={() => handleNextPrev(1)}>skip_next</i>
+                            <i className="material-icons" onClick={() => setShowVolume(prev => !prev)}>
+                                {volume === 0 ? 'volume_off' : 'volume_up'}
+                            </i>
+                            <div className={`volume ${showVolume ? 'show' : ''}`}>
+                                <input
+                                    type='range'
+                                    min={0}
+                                    max={100}
+                                    onChange={(e) => setVolume(Number(e.target.value))}
+                                    value={volume}
+                                    style={{
+                                        '--volume-percentage': `${volume}%`
+                                    }}
+                                />
+                                <span className="volume-value">{volume}%</span>
+                            </div>
+                        </div>
                     </div>
-                    {showImage ? (<div className='lyrics text-[20px]'>
-                        {nextLyricLine && (  // Chỉ hiển thị dòng tiếp theo nếu có
-                            <p className='text-[15px] justify-center text-gray-400'>{nextLyricLine}</p>
-                        )}
-                    </div>) : (<div className='lyrics text-[40px]'>
-                        {nextLyric && (  // Chỉ hiển thị dòng tiếp theo nếu có
-                            <p className='text-[20px] text-gray-400 leading-[2.5] '>{nextLyric}</p>
-                        )}
-                    </div>)}
                 </div>
             </div>
-            {showImage ? (
-                <div className='daiphu'>
-                    <div>
-                        <input
-                            className="w-full h-2 bg-white rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-gray-500"
-                            type="range"
-                            min={0}
-                            max={duration}
-                            value={currentTime}
-                            onChange={handleChangeTime}
-                            style={{
-                                accentColor: 'gray',
-                            }}
-                        />
-                    </div>
-                    <div className='timer'>
-                        <span>{timer(currentTime)}</span>
-                        <span>{timer(duration)}</span>
-                    </div>
-                    <div className='controls'>
-                        <i className="material-icons" onClick={handleRepeat}>{repeat}</i>
-                        <i className="material-icons" id='prev' onClick={() => handleNextPrev(-1)}>skip_previous</i>
-                        <div className='text-md cursor-pointer p-3 rounded-full border-2 border-gray-400 hover:border-green-400' onClick={handlePlayingAudio}>{play ? (<CiPause1 />) : (<CiPlay1 />)}</div>
-                        <i className="material-icons" id='next' onClick={() => handleNextPrev(1)}>skip_next</i>
-                        <i className="material-icons" onClick={() => setShowVolume(prev => !prev)}>
-                            {volume === 0 ? 'volume_off' : 'volume_up'}
-                        </i>
-                        <div className={`volume ${showVolume ? 'show' : ''}`}>
-                            <input type='range' min={0} max={100} onChange={(e) => setVolume(Number(e.target.value))} value={volume} />
-                        </div>
-                    </div>
-                </div>) : (<><div>
-                    <input className='w-full h-1' type='range' min={0} max={duration} value={currentTime} onChange={handleChangeTime} />
-                </div>
-                    <div className='timer'>
-                        <span>{timer(currentTime)}</span>
-                        <span>{timer(duration)}</span>
-                    </div></>)}
             <audio src={getSongSource()} hidden onLoadStart={handleLoadStart} ref={audioRed} onTimeUpdate={handleTimeUpdate} />
         </div>
     );

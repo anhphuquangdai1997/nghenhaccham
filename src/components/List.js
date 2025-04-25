@@ -60,23 +60,7 @@ const List = ({ props: { open, setOpen, musicNumber, setMusicNumber } }) => {
                     </li>
                 ))}
             </ul>
-            <div className="storage-info p-3 border-t border-gray-300">
-                <p className="text-gray-600 mb-1">Dung lượng lưu trữ:</p>
-                <div className="storage-progress-bar bg-gray-200 rounded-full h-2.5 mb-1">
-                    <div
-                        className={`h-2.5 rounded-full ${isStorageNearlyFull ? 'bg-red-600' : 'bg-blue-600'}`}
-                        style={{ width: `${storageUsage}%` }}
-                    ></div>
-                </div>
-                <p className="text-sm text-gray-500">
-                    Đã sử dụng {storageUsage.toFixed(1)}% dung lượng
-                    {isStorageNearlyFull && (
-                        <span className="text-red-500 ml-1">
-                            - Hãy xóa bớt bài hát để có thể tải thêm!
-                        </span>
-                    )}
-                </p>
-            </div>
+            
         </div>
     );
 };

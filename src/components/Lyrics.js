@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import musics from '../assets/data';
+import './Lyrics.css';
+import { IoClose } from 'react-icons/io5';
 
 export default function Lyrics({ props: { open2, setOpen2, musicNumber } }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
-    <div className={`listt ${open2 ? 'show' : ''}`}>
-      <div className="header">
-        Lời Bài Hát:
-        <i className="material-icons" onClick={() => setOpen2(false)}>close</i>
+    <div className={`lyrics-container ${open2 ? 'show' : ''}`}>
+      <div className="lyrics-header">
+        <h2>Lời Bài Hát</h2>
+        <button className="close-button" onClick={() => setOpen2(false)}>
+          <IoClose size={24} />
+        </button>
       </div>
-      <div className="noidung">
-        <h3 className="title text-red-500 text-xl">{musics[musicNumber].title}</h3>
-        <hr />
-        <div className="text-[#fff]" style={{ padding: '10px 39px' }}>
+
+      <div className="lyrics-content">
+        <div className="title-animated">
+          <h3 className="song-title">{musics[musicNumber].title}</h3>
+        </div>
+
+        <div className="lyrics-text">
           {musics[musicNumber].lyrics.split('\n').map((line, index) => (
-            <p key={index}>{line}</p>
+            <p
+              key={index}
+              className={`lyrics-line ${hoveredIndex === index ? 'hovered' : ''}`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {line}
+            </p>
           ))}
         </div>
       </div>

@@ -1,0 +1,60 @@
+.shorts-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.shorts-scroll-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* For Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.shorts-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Enable touch scrolling on mobile */
+.shorts-scroll-container {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Animation for item transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.shorts-scroll-container > div {
+  transition: all 0.3s ease-in-out;
+}
+
+.shorts-scroll-container > div.active {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+} 

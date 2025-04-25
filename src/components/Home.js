@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GrPrevious } from "react-icons/gr";
 import { BsPlayFill, BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeadphones } from "react-icons/fa";
+import ArtistSongs from './ArtistSongs';
 import '../assets/css/home.css';
 const musicData = [
     { id: 1, title: 'Nhạc Chill Tâm Trạng Buồn', image: 'https://file1.dangcongsan.vn/DATA/0/2017/08/2_b_thoi_trang_dan_toc_cham-15_13_54_418.jpg' },
@@ -56,9 +57,30 @@ const recommendations = [
     },
 ]
 
-export default function Home({ props: { open3, setOpen3 } }) {
+export default function Home({ open3, setOpen3, setCurrentPage }) {
+    const [selectedArtist, setSelectedArtist] = useState(null);
+
     const handleClose = () => {
         setOpen3(false);
+        if (setCurrentPage) {
+            setCurrentPage('home');
+        }
+    }
+
+    const handleArtistClick = (artistName) => {
+        setSelectedArtist(artistName);
+    }
+
+    const handleBackFromArtist = () => {
+        setSelectedArtist(null);
+    }
+
+    if (selectedArtist) {
+        return (
+            <div className={`listt ${open3 ? 'show' : ''}`}>
+                <ArtistSongs artist={selectedArtist} onBack={handleBackFromArtist} />
+            </div>
+        );
     }
 
     return (
@@ -152,6 +174,7 @@ export default function Home({ props: { open3, setOpen3 } }) {
                                 <div
                                     className="music-border group relative cursor-pointer"
                                     key={index}
+                                    onClick={() => handleArtistClick(artist.name)}
                                 >
                                     <div className="aspect-square rounded-full overflow-hidden shadow-xl relative">
                                         <img
