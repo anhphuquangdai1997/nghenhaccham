@@ -14,7 +14,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [open3, setOpen3] = useState(false);
+  const [open3, setOpen3] = useState(true);
   const [openUpload, setOpenUpload] = useState(false);
   const [openTabs, setOpenTabs] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');

@@ -244,7 +244,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                 <div className='flex items-center gap-[1.7rem]'>
                     <FaSearch className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpen1(true)} />
                     <FaCloudUploadAlt className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpenUpload(true)} />
-                    <SiYoutubeshorts  className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpenTabs(true)} title="Open Tabs Demo" />
+                    <SiYoutubeshorts className='text-[1.2rem] cursor-pointer hover:text-blue-500' onClick={() => setOpenTabs(true)} title="Open Tabs Demo" />
                 </div>
             </div>
             <div className='nav'>
@@ -255,27 +255,24 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                     visibility
                 </i>
             </div>
-            <div onClick={() => setShowImage(prev => !prev)} className='detailss'>
+            <div className='detailss'>
                 <div className="img-section">
-                    {showImage && (
-                        <div className={`img ${play ? 'playing' : ''}`}>
-                            <img src={getThumbnail()} alt="" className={`${play ? 'playing' : ''}`} />
-                        </div>
-                    )}
-                    {showImage && (
-                        <div className="audio-waves">
-                            {[...Array(30)].map((_, index) => (
-                                <div
-                                    key={index}
-                                    className="wave"
-                                    style={{
-                                        height: `${Math.random() * 100}%`,
-                                        animationDelay: `${index * 0.05}s`
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    )}
+                    <div onClick={() => setShowImage(prev => !prev)} className={`img ${play ? 'playing' : ''}`}>
+                        {showImage && (<img src={getThumbnail()} alt="" className={`${play ? 'playing' : ''}`} />)}
+                    </div>
+
+                    {showImage && (<div className="audio-waves">
+                        {[...Array(30)].map((_, index) => (
+                            <div
+                                key={index}
+                                className="wave"
+                                style={{
+                                    height: `${Math.random() * 100}%`,
+                                    animationDelay: `${index * 0.05}s`
+                                }}
+                            />
+                        ))}
+                    </div>)}
                 </div>
                 <div className="content-section">
                     <div className="details">
