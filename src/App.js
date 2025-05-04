@@ -14,7 +14,7 @@ function App() {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const [open3, setOpen3] = useState(true);
+  const [open3, setOpen3] = useState(false);
   const [openUpload, setOpenUpload] = useState(false);
   const [openTabs, setOpenTabs] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
@@ -49,7 +49,7 @@ function App() {
   return (
     <div>
       <Background3D />
-      <main className='w-full border-blue-500 shadow-lg overflow-hidden relative backdrop-blur-sm mx-auto  sm:p-6' >
+      <main className='w-full border-blue-500 shadow-lg overflow-hidden relative backdrop-blur-sm mx-auto sm:p-6'>
         <Card props={{ musicNumber, setMusicNumber, setOpen, setOpen1, setOpen2, setOpen3, setOpenUpload, setOpenTabs, setCurrentPage }} />
         <List props={{ open, setOpen, musicNumber, setMusicNumber }} />
         <Doc props={{ open1, setOpen1 }} />

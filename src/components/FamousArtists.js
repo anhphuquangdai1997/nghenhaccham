@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import ArtistSongs from './ArtistSongs';
 
 const FamousArtists = () => {
   const [hoveredId, setHoveredId] = useState(null);
+  const [selectedArtist, setSelectedArtist] = useState(null);
 
   const artists = [
     { id: 1, name: 'Chế Linh', genre: 'Bolero', followers: '2.5M', img: 'https://avatar-ex-swe.nixcdn.com/singer/avatar/2016/01/25/4/1/1/7/1453717930700_600.jpg' },
@@ -12,6 +14,10 @@ const FamousArtists = () => {
     { id: 5, name: 'Y Sa', genre: 'Electronic', followers: '950K', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScGwDUyPdN-s6tQ7srYdSDNEFBFpVqv3W50aHdVZn7gall4qAUCgKGcvEa-QXdoxutPUc&usqp=CAU' },
     { id: 6, name: 'Vương Rock', genre: 'Hip-Hop', followers: '2.7M', img: 'https://yt3.ggpht.com/HU1OW3gP2r91DTGcEkgVjtW-Z7rAMI7QHxm2VmeLgflw37ne8wOUGDSo3zKZzLzjV3swnUW3w1aDpg=s800-c-fcrop64=1,00003863ffffce14-rw-nd-v1' },
   ];
+
+  if (selectedArtist) {
+    return <ArtistSongs artist={selectedArtist} onBack={() => setSelectedArtist(null)} />;
+  }
 
   return (
     <div className="p-8 bg-gradient-to-br from-gray-900 via-purple-950 to-indigo-900 rounded-xl shadow-2xl">
@@ -28,7 +34,7 @@ const FamousArtists = () => {
         {artists.map(artist => (
           <motion.div
             key={artist.id}
-            className="relative group"
+            className="relative group cursor-pointer"
             style={{
               zIndex: hoveredId === artist.id ? 10 : 1,
               perspective: "1000px"
@@ -38,6 +44,7 @@ const FamousArtists = () => {
             transition={{ duration: 0.5, delay: artist.id * 0.1 }}
             onHoverStart={() => setHoveredId(artist.id)}
             onHoverEnd={() => setHoveredId(null)}
+            onClick={() => setSelectedArtist(artist.name)}
           >
             <motion.div
               className="relative bg-gradient-to-br from-purple-800/30 to-indigo-900/30 p-6 rounded-xl backdrop-blur-sm border border-purple-500/20 flex flex-col items-center"
@@ -63,38 +70,36 @@ const FamousArtists = () => {
               />
 
               {/* 3D Image */}
-              <div className="relative w-28 h-28 mb-4">
-                <motion.div
-                  className="w-full h-full rounded-full overflow-hidden"
-                  style={{
-                    boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)"
-                  }}
-                  whileHover={{
-                    scale: 1.15,
-                    rotate: 5
-                  }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <div className="w-full h-full rounded-full overflow-hidden ring-2 ring-purple-500 ring-offset-4 ring-offset-indigo-900/50">
-                    <img
-                      src={artist.img}
-                      alt={artist.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </motion.div>
+              <motion.div
+                className="w-full h-full rounded-full overflow-hidden"
+                style={{
+                  boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)"
+                }}
+                whileHover={{
+                  scale: 1.15,
+                  rotate: 5
+                }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                <div className="w-full h-full rounded-full overflow-hidden ring-2 ring-purple-500 ring-offset-4 ring-offset-indigo-900/50">
+                  <img
+                    src={artist.img}
+                    alt={artist.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
 
-                {/* Image shadow/glow effect */}
-                <motion.div
-                  className="absolute -inset-2 rounded-full blur-md opacity-40 -z-10"
-                  style={{
-                    background: 'radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.8), transparent 60%)'
-                  }}
-                  animate={{
-                    opacity: hoveredId === artist.id ? 0.6 : 0.4,
-                  }}
-                />
-              </div>
+              {/* Image shadow/glow effect */}
+              <motion.div
+                className="absolute -inset-2 rounded-full blur-md opacity-40 -z-10"
+                style={{
+                  background: 'radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.8), transparent 60%)'
+                }}
+                animate={{
+                  opacity: hoveredId === artist.id ? 0.6 : 0.4,
+                }}
+              />
 
               <motion.h4
                 className="font-bold text-white text-lg mb-1"

@@ -27,14 +27,27 @@ const Doc = ({ props: { open1, setOpen1 } }) => {
     const handleSearch = async () => {
         if (searchTerm.trim() === '') return;
         setIsLoading(true);
-        const apiKey = 'AIzaSyA8T3vCUFBbE3a4xuP_HbM_fkMpABSZUGE';
-        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${apiKey}&type=video`;
+        setSearchResults([]);
 
         try {
+            // Using environment variable for API key
+            const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY || 'AIzaSyA8T3vCUFBbE3a4xuP_HbM_fkMpABSZUGE';
+            const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchTerm}&key=${apiKey}&type=video`;
+
             const response = await axios.get(url);
+
+            if (response.status === 403) {
+                throw new Error('Đã vượt quá giới hạn API hoặc khóa API không hợp lệ. Vui lòng thử lại sau.');
+            }
+
             setSearchResults(response.data.items);
         } catch (error) {
             console.error('Lỗi khi lấy dữ liệu từ API YouTube:', error);
+            if (error.response?.status === 403) {
+                alert('Đã vượt quá giới hạn API hoặc khóa API không hợp lệ. Vui lòng thử lại sau.');
+            } else {
+                alert('Có lỗi xảy ra khi tìm kiếm. Vui lòng thử lại sau.');
+            }
         } finally {
             setIsLoading(false);
         }

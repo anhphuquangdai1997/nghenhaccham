@@ -8,7 +8,7 @@ import { CiPlay1 } from "react-icons/ci";
 import { CiPause1 } from "react-icons/ci";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { SiYoutubeshorts } from "react-icons/si";
-
+import TabBar from './TabBar';
 const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen2, setOpen3, setOpenUpload, setOpenTabs, setCurrentPage } }) => {
     const [duration, setDuration] = useState(1);
     const [currentTime, setCurrentTime] = useState(0);
@@ -255,11 +255,12 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                     visibility
                 </i>
             </div>
+            <div className='flex justify-center p-2'><TabBar setShowImage={setShowImage} /></div>
             <div className='detailss'>
                 <div className="img-section">
-                    <div onClick={() => setShowImage(prev => !prev)} className={`img ${play ? 'playing' : ''}`}>
-                        {showImage && (<img src={getThumbnail()} alt="" className={`${play ? 'playing' : ''}`} />)}
-                    </div>
+                    {showImage && (<div className={`img ${play ? 'playing' : ''}`}>
+                        <img src={getThumbnail()} alt="" className={`${play ? 'playing' : ''}`} />
+                    </div>)}
 
                     {showImage && (<div className="audio-waves">
                         {[...Array(30)].map((_, index) => (
@@ -276,12 +277,18 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                 </div>
                 <div className="content-section">
                     <div className="details">
-                        <p className="text-red-500">{musics[musicNumber]?.title || ''}</p>
-                        <p className="artist">{musics[musicNumber]?.artist || ''}</p>
+                        <div className='p-4 rounded-[12px] shadow-lg relative overflow-hidden'>
+                            <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-90"></div>
+                            <div className="absolute inset-0 water-droplets"></div>
+                            <div className="relative z-10">
+                                <p className="water-text text-2xl font-bold mb-2" data-text={musics[musicNumber]?.title || ''}>{musics[musicNumber]?.title || ''}</p>
+                                <p className="water-text text-lg italic" data-text={musics[musicNumber]?.artist || ''}>({musics[musicNumber]?.artist || ''})</p>
+                            </div>
+                        </div>
                         {errorLoading && (
                             <p className="text-red-500 mt-2">Không thể tải bài hát này. Có thể do định dạng hoặc nguồn không hợp lệ.</p>
                         )}
-                        <div className="lyrics-section mt-4">
+                        {!showImage && (<div className="lyrics-section mt-4">
                             {currentLyricLine && (
                                 <div className={`karaoke-container ${play ? 'playing' : ''}`}>
                                     <p className="current-line">
@@ -318,7 +325,7 @@ const Card = ({ props: { musicNumber, setMusicNumber, setOpen, setOpen1, setOpen
                                     )}
                                 </div>
                             )}
-                        </div>
+                        </div>)}
                     </div>
                     <div className='daiphu'>
                         <div>
